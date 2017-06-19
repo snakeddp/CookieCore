@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Managers\D2I\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cookie.Core\Cookie.Core.csproj" />
+    <ProjectReference Include="..\Cookie.IO\Cookie.IO.csproj" />
+    <ProjectReference Include="..\Cookie.Protocol\Cookie.Protocol.csproj" />
+  </ItemGroup>
+
+</Project>

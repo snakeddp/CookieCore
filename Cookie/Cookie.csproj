@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <RuntimeIdentifiers>win7-x64;win7-x86;win10-x64;osx.10.11-x64;ubuntu.16.10-x64</RuntimeIdentifiers>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cookie.Core\Cookie.Core.csproj" />
+    <ProjectReference Include="..\Cookie.DataCenter\Cookie.DataCenter.csproj" />
+    <ProjectReference Include="..\Cookie.IO\Cookie.IO.csproj" />
+    <ProjectReference Include="..\Cookie.Memory\Cookie.Memory.csproj" />
+    <ProjectReference Include="..\Cookie.Network\Cookie.Network.csproj" />
+    <ProjectReference Include="..\Cookie.Protocol\Cookie.Protocol.csproj" />
+    <ProjectReference Include="..\Cookie.SerDes\Cookie.SerDes.csproj" />
+    <ProjectReference Include="..\Cookie.Sizeable\Cookie.Sizeable.csproj" />
+  </ItemGroup>
+
+</Project>
