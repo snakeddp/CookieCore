@@ -8,6 +8,8 @@ namespace Cookie.Sockets
 {
     public class DofusSocket : AbstractClient
     {
+        public Account Account { get; set; }
+
         public DofusSocket(IPEndPoint ipToConnect) : base(ipToConnect)
         {
             //

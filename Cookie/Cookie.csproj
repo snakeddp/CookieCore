@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Security.Cryptography.Algorithms" Version="4.3.0" />
+    <PackageReference Include="System.Security.Cryptography.Csp" Version="4.3.0" />
+    <PackageReference Include="System.Security.Cryptography.X509Certificates" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Cookie.Core\Cookie.Core.csproj" />
     <ProjectReference Include="..\Cookie.DataCenter\Cookie.DataCenter.csproj" />
     <ProjectReference Include="..\Cookie.IO\Cookie.IO.csproj" />
