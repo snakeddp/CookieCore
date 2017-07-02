@@ -9,8 +9,11 @@ namespace Cookie.SerDes.Des.Parts
 {
     internal class WrappedBool : IDeserializerPart
     {
-        public bool Predicat(PropertyInfo property) => property.PropertyType == typeof(bool)
-                               && property.GetCustomAttribute<RegularBoolAttribute>() == null;
+        public bool Predicat(PropertyInfo property)
+        {
+            return property.PropertyType == typeof(bool)
+                   && property.GetCustomAttribute<RegularBoolAttribute>() == null;
+        }
 
         public void OnMatch(List<ParameterExpression> variableExpressions, List<Expression> contentExpressions,
             PropertyInfo propertyInfo, ParameterExpression paramClass, ParameterExpression paramReader)
@@ -19,8 +22,8 @@ namespace Cookie.SerDes.Des.Parts
 
             var paramProp = Expression.Property(paramClass, propertyInfo);
 
-            var callReader = propertyInfo.GetCustomAttribute<ForceNewByteAttribute>() != null 
-                ? Expression.Call(paramReader, mi, Expression.Constant(0), Expression.Constant(true)) 
+            var callReader = propertyInfo.GetCustomAttribute<ForceNewByteAttribute>() != null
+                ? Expression.Call(paramReader, mi, Expression.Constant(0), Expression.Constant(true))
                 : Expression.Call(paramReader, mi, Expression.Constant(0), Expression.Constant(false));
 
             var assignExp = Expression.Assign(paramProp, callReader);

@@ -1,6 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
-using Cookie.Protocol.Types.Game.Friend;
+﻿using Cookie.Core.Attributes.Class;
 
 namespace Cookie.Protocol.Messages.Game.Friend
 {

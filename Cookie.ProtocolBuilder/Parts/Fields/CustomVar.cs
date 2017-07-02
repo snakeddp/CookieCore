@@ -7,7 +7,11 @@ namespace Cookie.ProtocolBuilder.Parts.Fields
 {
     public class CustomVar : IFieldPart
     {
-        public bool Predicat(Field fi) => !fi.IsVector && fi.WriteMethod.StartsWith("writeVar") && !fi.UseTypeManager && fi.Type.IsCustomType();
+        public bool Predicat(Field fi)
+        {
+            return !fi.IsVector && fi.WriteMethod.StartsWith("writeVar") && !fi.UseTypeManager &&
+                   fi.Type.IsCustomType();
+        }
 
         public void OnMatch(StringBuilder writer, Field fi)
         {

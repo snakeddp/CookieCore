@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Alliance
@@ -9,6 +8,7 @@ namespace Cookie.Protocol.Messages.Game.Alliance
     {
         [RegularBool]
         public bool Kicked { get; set; }
+
         [CustomVar]
         public uint GuildId { get; set; }
     }

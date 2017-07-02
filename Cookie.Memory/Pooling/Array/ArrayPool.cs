@@ -8,11 +8,6 @@ namespace Cookie.Memory.Pooling.Array
     {
         private readonly Dictionary<int, Bucket> _buckets;
 
-        public int MinSize { get; }
-        public int MaxSize { get; }
-        public int Length { get; }
-        public T[] Array { get; }
-
         public ArrayPool(int minSize, int maxSize, int buckets)
         {
             if (minSize < 1)
@@ -49,6 +44,11 @@ namespace Cookie.Memory.Pooling.Array
                 currentSize *= 2;
             }
         }
+
+        public int MinSize { get; }
+        public int MaxSize { get; }
+        public int Length { get; }
+        public T[] Array { get; }
 
         public ArraySegment<T> Take(int minSize)
         {

@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Inventory.Preset
@@ -8,6 +7,7 @@ namespace Cookie.Protocol.Messages.Game.Inventory.Preset
     public class IdolsPresetUseMessage
     {
         public sbyte PresetId { get; set; }
+
         [RegularBool]
         public bool Party { get; set; }
     }

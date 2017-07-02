@@ -1,7 +1,5 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
-using Cookie.Protocol.Types.Game.Context.Roleplay.Party;
 
 namespace Cookie.Protocol.Messages.Game.Context.Roleplay.Party
 {

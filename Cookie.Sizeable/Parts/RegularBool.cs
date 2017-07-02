@@ -10,13 +10,17 @@ namespace Cookie.Sizeable.Parts
 {
     internal class RegularBool : ISizePart
     {
-        public bool Predicat(PropertyInfo property) => property.PropertyType == typeof(bool)
-                                               && property.GetCustomAttribute<RegularBoolAttribute>() != null;
+        public bool Predicat(PropertyInfo property)
+        {
+            return property.PropertyType == typeof(bool)
+                   && property.GetCustomAttribute<RegularBoolAttribute>() != null;
+        }
 
         public void OnMatch(List<Expression> expressions, PropertyInfo propertyInfo,
             ParameterExpression paramClass)
         {
-            var mi = typeof(SizeMapperManager).GetMethods().First(x => !x.GetParameters().Any() && x.Name == "SizeOf").MakeGenericMethod(propertyInfo.PropertyType);
+            var mi = typeof(SizeMapperManager).GetMethods().First(x => !x.GetParameters().Any() && x.Name == "SizeOf")
+                .MakeGenericMethod(propertyInfo.PropertyType);
             var sizeValue = Expression.Call(mi);
 
             expressions.Add(sizeValue);

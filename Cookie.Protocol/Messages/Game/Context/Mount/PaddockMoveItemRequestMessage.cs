@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Context.Mount
@@ -9,6 +8,7 @@ namespace Cookie.Protocol.Messages.Game.Context.Mount
     {
         [CustomVar]
         public ushort OldCellId { get; set; }
+
         [CustomVar]
         public ushort NewCellId { get; set; }
     }

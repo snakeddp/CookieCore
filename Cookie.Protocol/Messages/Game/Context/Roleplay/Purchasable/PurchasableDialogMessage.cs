@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Context.Roleplay.Purchasable
@@ -8,10 +7,13 @@ namespace Cookie.Protocol.Messages.Game.Context.Roleplay.Purchasable
     public class PurchasableDialogMessage
     {
         public bool BuyOrSell { get; set; }
+
         [CustomVar]
         public uint PurchasableId { get; set; }
+
         public uint PurchasableInstanceId { get; set; }
         public bool SecondHand { get; set; }
+
         [CustomVar]
         public long Price { get; set; }
     }

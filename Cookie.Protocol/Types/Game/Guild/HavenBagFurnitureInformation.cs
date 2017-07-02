@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Types.Game.Guild
@@ -9,6 +8,7 @@ namespace Cookie.Protocol.Types.Game.Guild
     {
         [CustomVar]
         public ushort CellId { get; set; }
+
         public int FunitureId { get; set; }
         public sbyte Orientation { get; set; }
     }

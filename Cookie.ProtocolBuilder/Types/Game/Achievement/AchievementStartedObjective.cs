@@ -1,0 +1,9 @@
+﻿namespace Cookie.Protocol.Types.Game.Achievement
+{
+    [NetworkType(402)]
+    public class AchievementStartedObjective : AchievementObjective
+    {
+        [CustomVar]
+        public ushort Value { get; set; }
+    }
+}

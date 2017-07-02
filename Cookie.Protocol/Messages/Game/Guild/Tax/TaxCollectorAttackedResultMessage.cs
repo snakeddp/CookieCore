@@ -1,8 +1,7 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
-using Cookie.Protocol.Types.Game.Guild.Tax;
 using Cookie.Protocol.Types.Game.Context.Roleplay;
+using Cookie.Protocol.Types.Game.Guild.Tax;
 
 namespace Cookie.Protocol.Messages.Game.Guild.Tax
 {
@@ -11,6 +10,7 @@ namespace Cookie.Protocol.Messages.Game.Guild.Tax
     {
         [RegularBool]
         public bool DeadOrAlive { get; set; }
+
         public TaxCollectorBasicInformations BasicInfos { get; set; }
         public BasicGuildInformations Guild { get; set; }
     }

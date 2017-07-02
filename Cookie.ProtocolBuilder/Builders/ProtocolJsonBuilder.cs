@@ -1,20 +1,19 @@
 ﻿using System.Diagnostics;
 using System.IO;
 
-
 namespace Cookie.ProtocolBuilder.Builders
 {
     public static class ProtocolJsonBuilder
     {
         /// <summary>
-        /// Build new DofusProtocol.json to current directory
-        /// TODO Warning: UNTESTED
+        ///     Build new DofusProtocol.json to current directory
+        ///     TODO Warning: UNTESTED
         /// </summary>
         /// <returns>
-        /// Result of process starting and json file creating
+        ///     Result of process starting and json file creating
         /// </returns>
         /// <remarks>
-        /// d2json.exe must be in the current directory (where you launch the program)
+        ///     d2json.exe must be in the current directory (where you launch the program)
         /// </remarks>
         public static bool TryBuildNewProtocol()
         {

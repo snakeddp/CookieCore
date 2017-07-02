@@ -8,12 +8,6 @@ namespace Cookie.ProtocolBuilder.Writers
 {
     public class EnumClassWriter
     {
-        public EnumClass Class { get; }
-        public D2JsonProvider Provider { get; }
-        public string ClassContent => _writer.ToString();
-        public string ClassPath => $@"{Directory.GetCurrentDirectory()}\Enums\{Class.Name}.cs";
-        public string ClassDirectory => $@"{Directory.GetCurrentDirectory()}\Enums\";
-
         private readonly StringBuilder _writer;
 
         public EnumClassWriter(EnumClass eClass, D2JsonProvider provider)
@@ -23,6 +17,12 @@ namespace Cookie.ProtocolBuilder.Writers
 
             _writer = new StringBuilder();
         }
+
+        public EnumClass Class { get; }
+        public D2JsonProvider Provider { get; }
+        public string ClassContent => _writer.ToString();
+        public string ClassPath => $@"{Directory.GetCurrentDirectory()}\Enums\{Class.Name}.cs";
+        public string ClassDirectory => $@"{Directory.GetCurrentDirectory()}\Enums\";
 
         public bool TryCreateRepositories()
         {
@@ -69,7 +69,6 @@ namespace Cookie.ProtocolBuilder.Writers
             _writer.AppendLine("    [Flags]");
             _writer.AppendLine($"    public enum {Class.Name}");
             _writer.AppendLine("    {");
-
         }
 
         public void WriteProperties()
@@ -82,9 +81,9 @@ namespace Cookie.ProtocolBuilder.Writers
 
             foreach (var v in Class.Values)
                 _writer.AppendLine(
-                    Class.Values.Last().Equals(v) 
-                    ? $"        {v.Name} = {v.Value}" 
-                    : $"        {v.Name} = {v.Value},");
+                    Class.Values.Last().Equals(v)
+                        ? $"        {v.Name} = {v.Value}"
+                        : $"        {v.Name} = {v.Value},");
 
             EndClass();
         }

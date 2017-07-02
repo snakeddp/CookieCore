@@ -1,7 +1,5 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
-using Cookie.Protocol.Types.Game.Social;
 
 namespace Cookie.Protocol.Messages.Game.Basic
 {
@@ -13,8 +11,10 @@ namespace Cookie.Protocol.Messages.Game.Basic
         public string AccountNickname { get; set; }
         public uint AccountId { get; set; }
         public string PlayerName { get; set; }
+
         [CustomVar]
         public long PlayerId { get; set; }
+
         public short AreaId { get; set; }
         public short ServerId { get; set; }
         public short OriginServerId { get; set; }

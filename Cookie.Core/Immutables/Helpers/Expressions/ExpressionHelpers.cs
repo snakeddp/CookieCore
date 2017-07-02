@@ -5,13 +5,14 @@ namespace Cookie.Core.Immutables.Helpers.Expressions
 {
     public static class ExpressionHelpers
     {
-        public static Expression For(ParameterExpression loopVar, Expression initValue, Expression condition, Expression increment, Expression loopContent)
+        public static Expression For(ParameterExpression loopVar, Expression initValue, Expression condition,
+            Expression increment, Expression loopContent)
         {
             var initAssign = Expression.Assign(loopVar, initValue);
-            
+
             var breakLabel = Expression.Label("LoopBreak");
 
-            var loop = Expression.Block(new[] { loopVar },
+            var loop = Expression.Block(new[] {loopVar},
                 initAssign,
                 Expression.Loop(
                     Expression.IfThenElse(
@@ -22,7 +23,7 @@ namespace Cookie.Core.Immutables.Helpers.Expressions
                         ),
                         Expression.Break(breakLabel)
                     ),
-                breakLabel)
+                    breakLabel)
             );
 
             return loop;

@@ -10,19 +10,14 @@ namespace Cookie.ProtocolBuilder.Json
 {
     public class D2JsonProvider
     {
-        private string JsonFullString { get; }
-        private JObject Protocol { get; }
-
-        public string ProtocolJsonPath { get; }
-        public ImmutableList<ProtocolClass> Messages { get; }
-        public ImmutableList<ProtocolClass> Types { get; }
-        public ImmutableList<EnumClass> Enums { get; }
-
         /// <summary>
-        /// Simple json reader which read d2json output file
+        ///     Simple json reader which read d2json output file
         /// </summary>
         /// <param name="protocolJsonPath">The path of the .json file</param>
-        /// <returns><see cref="D2JsonProvider"/> object containing three <see cref="ImmutableList{T}"/> of different type of dofus classes</returns>
+        /// <returns>
+        ///     <see cref="D2JsonProvider" /> object containing three <see cref="ImmutableList{T}" /> of different type of
+        ///     dofus classes
+        /// </returns>
         public D2JsonProvider(string protocolJsonPath)
         {
             Throw.IfNull(protocolJsonPath, nameof(protocolJsonPath));
@@ -37,5 +32,13 @@ namespace Cookie.ProtocolBuilder.Json
 
             WriteLine($"> {Messages.Count} messages, {Types.Count} types and {Enums.Count} enums found");
         }
+
+        private string JsonFullString { get; }
+        private JObject Protocol { get; }
+
+        public string ProtocolJsonPath { get; }
+        public ImmutableList<ProtocolClass> Messages { get; }
+        public ImmutableList<ProtocolClass> Types { get; }
+        public ImmutableList<EnumClass> Enums { get; }
     }
 }

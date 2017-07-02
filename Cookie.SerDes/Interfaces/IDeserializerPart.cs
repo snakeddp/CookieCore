@@ -8,7 +8,7 @@ namespace Cookie.SerDes.Interfaces
     {
         bool Predicat(PropertyInfo property);
 
-        void OnMatch(List<ParameterExpression> variableExpressions, List<Expression> contentExpressions, 
+        void OnMatch(List<ParameterExpression> variableExpressions, List<Expression> contentExpressions,
             PropertyInfo propertyInfo, ParameterExpression paramClass, ParameterExpression paramReader);
     }
 }

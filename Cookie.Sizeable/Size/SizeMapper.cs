@@ -11,11 +11,6 @@ namespace Cookie.Sizeable.Size
 {
     internal static class SizeMapper<T>
     {
-        // ReSharper disable once StaticMemberInGenericType
-        internal static int Size { get; }
-        internal static Func<T, int> ValueSizeFunc { get; }
-        internal static Func<T, bool, int> MessageSizeFunc { get; }
-
         static SizeMapper()
         {
             PartsManager.Init();
@@ -32,21 +27,40 @@ namespace Cookie.Sizeable.Size
                 Size = Marshal.SizeOf<T>();
 
                 if (CustomTypes.Customs.Contains(t))
-                    ValueSizeFunc = ValueSizeFunc = SizeFunctionGenerator<T>.MakeCustomVarSizeExpression(paramT).Compile();
+                    ValueSizeFunc = ValueSizeFunc = SizeFunctionGenerator<T>.MakeCustomVarSizeExpression(paramT)
+                        .Compile();
             }
             else if (t == typeof(bool))
+            {
                 Size = 1;
+            }
             else if (t == typeof(string))
+            {
                 ValueSizeFunc = SizeFunctionGenerator<T>.MakeStringSizeExpression(paramT).Compile();
-            else if(tInfo.HasCustomAttribute<NetworkMessageAttribute>())
-                MessageSizeFunc = SizeFunctionGenerator<T>.MakeNetworkMessageSizeExpression(paramT, paramBool).Compile();
+            }
+            else if (tInfo.HasCustomAttribute<NetworkMessageAttribute>())
+            {
+                MessageSizeFunc = SizeFunctionGenerator<T>.MakeNetworkMessageSizeExpression(paramT, paramBool)
+                    .Compile();
+            }
             else if (tInfo.HasCustomAttribute<NetworkTypeAttribute>())
+            {
                 ValueSizeFunc = SizeFunctionGenerator<T>.MakeNetworkTypeSizeExpression(paramT).Compile();
+            }
             else
+            {
                 throw new ArgumentException(t.FullName);
+            }
         }
 
+        // ReSharper disable once StaticMemberInGenericType
+        internal static int Size { get; }
+
+        internal static Func<T, int> ValueSizeFunc { get; }
+        internal static Func<T, bool, int> MessageSizeFunc { get; }
+
         public static void Init()
-        { }
+        {
+        }
     }
 }

@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Types.Game.Context.Roleplay.Job
@@ -8,6 +7,7 @@ namespace Cookie.Protocol.Types.Game.Context.Roleplay.Job
     public class JobBookSubscription
     {
         public sbyte JobId { get; set; }
+
         [RegularBool]
         public bool Subscribed { get; set; }
     }

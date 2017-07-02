@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Character.Stats
@@ -9,10 +8,13 @@ namespace Cookie.Protocol.Messages.Game.Character.Stats
     {
         [CustomVar]
         public long ExperienceCharacter { get; set; }
+
         [CustomVar]
         public long ExperienceMount { get; set; }
+
         [CustomVar]
         public long ExperienceGuild { get; set; }
+
         [CustomVar]
         public long ExperienceIncarnation { get; set; }
     }

@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Types.Game.Context.Fight
@@ -8,8 +7,10 @@ namespace Cookie.Protocol.Types.Game.Context.Fight
     public class FightTeamLightInformations : AbstractFightTeamInformations
     {
         public sbyte TeamMembersCount { get; set; }
+
         [CustomVar]
         public uint MeanLevel { get; set; }
+
         public bool HasFriend { get; set; }
         public bool HasGuildMember { get; set; }
         public bool HasAllianceMember { get; set; }

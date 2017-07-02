@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Context
@@ -10,6 +9,7 @@ namespace Cookie.Protocol.Messages.Game.Context
         [CustomVar]
         [LengthType(typeof(short))]
         public ushort[] KeyMovements { get; set; }
+
         public uint MapId { get; set; }
     }
 }

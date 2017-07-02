@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Approach
@@ -10,6 +9,7 @@ namespace Cookie.Protocol.Messages.Game.Approach
         public string Lang { get; set; }
         public sbyte Community { get; set; }
         public byte GameType { get; set; }
+
         [CustomVar]
         public ushort ArenaLeaveBanTime { get; set; }
     }

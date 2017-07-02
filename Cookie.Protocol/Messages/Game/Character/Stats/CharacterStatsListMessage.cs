@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Protocol.Types.Game.Character.Characteristic;
 
 namespace Cookie.Protocol.Messages.Game.Character.Stats

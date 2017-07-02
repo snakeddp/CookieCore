@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Types.Game.Character.Alignment
@@ -9,10 +8,13 @@ namespace Cookie.Protocol.Types.Game.Character.Alignment
     {
         [CustomVar]
         public ushort Honor { get; set; }
+
         [CustomVar]
         public ushort HonorGradeFloor { get; set; }
+
         [CustomVar]
         public ushort HonorNextGradeFloor { get; set; }
+
         public sbyte Aggressable { get; set; }
     }
 }

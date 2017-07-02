@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Common.Basic
@@ -8,6 +7,7 @@ namespace Cookie.Protocol.Messages.Common.Basic
     public class BasicStatMessage
     {
         public double TimeSpent { get; set; }
+
         [CustomVar]
         public ushort StatId { get; set; }
     }

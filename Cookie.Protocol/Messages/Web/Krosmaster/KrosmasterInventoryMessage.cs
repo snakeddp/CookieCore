@@ -1,6 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
-using Cookie.Protocol.Types.Web.Krosmaster;
+﻿using Cookie.Core.Attributes.Class;
 
 namespace Cookie.Protocol.Messages.Web.Krosmaster
 {

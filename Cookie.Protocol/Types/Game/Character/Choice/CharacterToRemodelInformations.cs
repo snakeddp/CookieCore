@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 
 namespace Cookie.Protocol.Types.Game.Character.Choice
 {

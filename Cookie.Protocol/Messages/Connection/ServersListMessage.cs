@@ -1,7 +1,5 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
-using Cookie.Protocol.Types.Connection;
 
 namespace Cookie.Protocol.Messages.Connection
 {
@@ -10,6 +8,7 @@ namespace Cookie.Protocol.Messages.Connection
     {
         [CustomVar]
         public ushort AlreadyConnectedToServerId { get; set; }
+
         [RegularBool]
         public bool CanCreateNewCharacter { get; set; }
     }

@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Types.Game.Context.Roleplay.Job
@@ -9,10 +8,13 @@ namespace Cookie.Protocol.Types.Game.Context.Roleplay.Job
     {
         public sbyte JobId { get; set; }
         public sbyte JobLevel { get; set; }
+
         [CustomVar]
         public long JobXP { get; set; }
+
         [CustomVar]
         public long JobXpLevelFloor { get; set; }
+
         [CustomVar]
         public long JobXpNextLevelFloor { get; set; }
     }

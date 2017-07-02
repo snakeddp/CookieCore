@@ -8,8 +8,6 @@ namespace Cookie.SerDes.Ser
 {
     internal class SerializerPartsManager
     {
-        internal static ImmutableList<ISerializerPart> Parts { get; }
-
         static SerializerPartsManager()
         {
             var ass = typeof(ISerializerPart).GetTypeInfo().Assembly;
@@ -17,12 +15,16 @@ namespace Cookie.SerDes.Ser
             var types =
                 ass.GetTypes()
                     .Where(
-                        type => type.GetTypeInfo().IsClass && !type.GetTypeInfo().IsAbstract && type.GetInterfaces().Contains(typeof(ISerializerPart)));
+                        type => type.GetTypeInfo().IsClass && !type.GetTypeInfo().IsAbstract &&
+                                type.GetInterfaces().Contains(typeof(ISerializerPart)));
 
-            Parts = types.Select(type => (ISerializerPart)Activator.CreateInstance(type)).ToImmutableList();
+            Parts = types.Select(type => (ISerializerPart) Activator.CreateInstance(type)).ToImmutableList();
         }
 
+        internal static ImmutableList<ISerializerPart> Parts { get; }
+
         public static void Init()
-        { }
+        {
+        }
     }
 }

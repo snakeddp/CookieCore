@@ -1,7 +1,5 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
-using Cookie.Protocol.Types.Game.Dare;
 
 namespace Cookie.Protocol.Messages.Game.Dare
 {
@@ -10,8 +8,10 @@ namespace Cookie.Protocol.Messages.Game.Dare
     {
         [CustomVar]
         public long SubscriptionFee { get; set; }
+
         [CustomVar]
         public long Jackpot { get; set; }
+
         public ushort MaxCountWinners { get; set; }
         public uint DelayBeforeStart { get; set; }
         public uint Duration { get; set; }

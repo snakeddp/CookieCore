@@ -1,6 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
-using Cookie.Protocol.Types.Game.Look;
+﻿using Cookie.Core.Attributes.Class;
 
 namespace Cookie.Protocol.Types.Game.Context.Roleplay
 {

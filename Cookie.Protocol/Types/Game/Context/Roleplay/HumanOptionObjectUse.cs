@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Types.Game.Context.Roleplay
@@ -9,6 +8,7 @@ namespace Cookie.Protocol.Types.Game.Context.Roleplay
     {
         public sbyte DelayTypeId { get; set; }
         public double DelayEndTime { get; set; }
+
         [CustomVar]
         public ushort ObjectGID { get; set; }
     }

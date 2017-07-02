@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Context.Dungeon
@@ -9,6 +8,7 @@ namespace Cookie.Protocol.Messages.Game.Context.Dungeon
     {
         [CustomVar]
         public ushort DungeonId { get; set; }
+
         [RegularBool]
         public bool Available { get; set; }
     }

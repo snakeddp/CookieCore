@@ -1,6 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
-using Cookie.Protocol.Types.Common.Basic;
+﻿using Cookie.Core.Attributes.Class;
 
 namespace Cookie.Protocol.Messages.Common.Basic
 {

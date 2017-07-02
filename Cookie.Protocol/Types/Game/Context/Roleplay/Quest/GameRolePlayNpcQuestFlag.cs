@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Types.Game.Context.Roleplay.Quest
@@ -10,6 +9,7 @@ namespace Cookie.Protocol.Types.Game.Context.Roleplay.Quest
         [CustomVar]
         [LengthType(typeof(short))]
         public ushort[] QuestsToValidId { get; set; }
+
         [CustomVar]
         [LengthType(typeof(short))]
         public ushort[] QuestsToStartId { get; set; }

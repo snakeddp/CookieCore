@@ -9,6 +9,7 @@ namespace Cookie.Protocol.Messages.Game.Context
         [CustomVar]
         [LengthType(typeof(short))]
         public ushort[] KeyMovements { get; set; }
+
         public short ForcedDirection { get; set; }
         public double ActorId { get; set; }
     }

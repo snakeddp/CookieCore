@@ -9,8 +9,6 @@ namespace Cookie.SerDes.Des
 {
     internal static class Deserializer<T>
     {
-        public static Func<IReader, T> DeserializeFunc { get; }
-
         static Deserializer()
         {
             DeserializerPartsManager.Init();
@@ -22,16 +20,18 @@ namespace Cookie.SerDes.Des
 
             if (!tInfo.HasCustomAttribute<NetworkMessageAttribute>()
                 && !tInfo.HasCustomAttribute<NetworkTypeAttribute>())
-            {
                 throw new ArgumentException(nameof(t));
-            }
 
             var paramReader = Expression.Parameter(typeof(IReader), "reader");
 
-            DeserializeFunc = DeserializerFunctionGenerator<T>.MakeDeserializerExpression(paramReader, className).Compile();
+            DeserializeFunc = DeserializerFunctionGenerator<T>.MakeDeserializerExpression(paramReader, className)
+                .Compile();
         }
 
+        public static Func<IReader, T> DeserializeFunc { get; }
+
         internal static void GenerateExpression()
-        { }
+        {
+        }
     }
 }

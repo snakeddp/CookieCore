@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 using Cookie.Protocol.Messages.Game.Social;
 
@@ -9,6 +8,7 @@ namespace Cookie.Protocol.Messages.Game.Alliance
     public class AllianceBulletinSetRequestMessage : SocialNoticeSetRequestMessage
     {
         public string Content { get; set; }
+
         [RegularBool]
         public bool NotifyMembers { get; set; }
     }

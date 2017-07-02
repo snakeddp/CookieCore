@@ -1,7 +1,5 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Protocol.Types.Game.Look;
-using Cookie.Protocol.Types.Game.Context;
 
 namespace Cookie.Protocol.Types.Game.Context
 {

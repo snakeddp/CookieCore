@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Inventory.Exchanges
@@ -8,6 +7,7 @@ namespace Cookie.Protocol.Messages.Game.Inventory.Exchanges
     public class ExchangeHandleMountsStableMessage
     {
         public byte ActionType { get; set; }
+
         [CustomVar]
         [LengthType(typeof(short))]
         public uint[] RidesId { get; set; }

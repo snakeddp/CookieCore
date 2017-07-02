@@ -1,18 +1,21 @@
-﻿using Cookie.Core.Attributes.Property;
-using Cookie.Core.Immutables;
-using Cookie.Sizeable.Interfaces;
-using Cookie.Sizeable.Managers;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using Cookie.Core.Attributes.Property;
+using Cookie.Core.Immutables;
 using Cookie.Core.Immutables.Helpers.Expressions;
+using Cookie.Sizeable.Interfaces;
+using Cookie.Sizeable.Managers;
 
 namespace Cookie.Sizeable.Parts
 {
     internal class Array : ISizePart
     {
-        public bool Predicat(PropertyInfo property) => property.PropertyType.IsArray;
+        public bool Predicat(PropertyInfo property)
+        {
+            return property.PropertyType.IsArray;
+        }
 
         public void OnMatch(List<Expression> expressions, PropertyInfo propertyInfo,
             ParameterExpression paramClass)
@@ -34,14 +37,14 @@ namespace Cookie.Sizeable.Parts
 
             var sizeOfwithParamMi = typeof(SizeMapperManager)
                 .GetMethods()
-                .First(x => x.GetParameters().Any() 
-                    && x.Name == "SizeOf")
+                .First(x => x.GetParameters().Any()
+                            && x.Name == "SizeOf")
                 .MakeGenericMethod(elemType);
 
             var sizeOfAMi = typeof(SizeMapperManager)
                 .GetMethods()
                 .First(x => x.GetParameters().Any()
-                    && x.Name == "SizeOfArray")
+                            && x.Name == "SizeOfArray")
                 .MakeGenericMethod(elemType);
 
             var sizeOfPrimitivesMethod = Expression.Call(sizeOfElemMi);
@@ -74,17 +77,13 @@ namespace Cookie.Sizeable.Parts
             else
             {
                 if (!isContentCustom)
-                {
                     finalExpression = Expression.Add(
                         Expression.Multiply(paramLen,
                             sizeOfPrimitivesMethod),
                         isTypeLenCustom ? sizeOfCustomTypeLen : sizeOfPrimitiveTypeLenMethod);
-                }
                 else
-                {
                     finalExpression = Expression.Add(sizeOfArrayMethod,
                         isTypeLenCustom ? sizeOfCustomTypeLen : sizeOfPrimitiveTypeLenMethod);
-                }
             }
 
             expressions.Add(finalExpression);

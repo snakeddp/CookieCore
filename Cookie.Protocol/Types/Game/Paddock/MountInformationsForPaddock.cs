@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Types.Game.Paddock
@@ -9,6 +8,7 @@ namespace Cookie.Protocol.Types.Game.Paddock
     {
         [CustomVar]
         public ushort ModelId { get; set; }
+
         public string Name { get; set; }
         public string OwnerName { get; set; }
     }

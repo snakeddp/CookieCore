@@ -1,7 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
-using Cookie.Protocol.Types.Game.Inventory.Preset;
-using Cookie.Protocol.Types.Game.Inventory.Preset;
+﻿using Cookie.Core.Attributes.Class;
 
 namespace Cookie.Protocol.Messages.Game.Inventory.Items
 {

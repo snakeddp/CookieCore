@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Types.Game.Context.Roleplay.Party.Companion
@@ -9,12 +8,16 @@ namespace Cookie.Protocol.Types.Game.Context.Roleplay.Party.Companion
     {
         [CustomVar]
         public ushort Initiative { get; set; }
+
         [CustomVar]
         public uint LifePoints { get; set; }
+
         [CustomVar]
         public uint MaxLifePoints { get; set; }
+
         [CustomVar]
         public ushort Prospecting { get; set; }
+
         public sbyte RegenRate { get; set; }
     }
 }

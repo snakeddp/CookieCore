@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Actions.Fight
@@ -8,6 +7,7 @@ namespace Cookie.Protocol.Messages.Game.Actions.Fight
     public class GameActionFightLifePointsGainMessage : AbstractGameActionMessage
     {
         public double TargetId { get; set; }
+
         [CustomVar]
         public uint Delta { get; set; }
     }

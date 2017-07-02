@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Inventory.Exchanges
@@ -9,6 +8,7 @@ namespace Cookie.Protocol.Messages.Game.Inventory.Exchanges
     {
         [RegularBool]
         public bool Ready { get; set; }
+
         [CustomVar]
         public ushort Step { get; set; }
     }

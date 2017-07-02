@@ -1,7 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
-using Cookie.Protocol.Types.Game.Character;
-using Cookie.Protocol.Types.Game.Character;
+﻿using Cookie.Core.Attributes.Class;
 
 namespace Cookie.Protocol.Types.Game.Guild.Tax
 {

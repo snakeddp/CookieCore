@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Guild
@@ -9,9 +8,12 @@ namespace Cookie.Protocol.Messages.Game.Guild
     {
         [CustomVar]
         public long MemberId { get; set; }
+
         [CustomVar]
         public ushort Rank { get; set; }
+
         public sbyte ExperienceGivenPercent { get; set; }
+
         [CustomVar]
         public uint Rights { get; set; }
     }

@@ -12,7 +12,8 @@ namespace Cookie.SerDes.Des
     {
         private static readonly Type TypeOfT = typeof(T);
 
-        public static Expression<Func<IReader, T>> MakeDeserializerExpression(ParameterExpression paramReader, string className)
+        public static Expression<Func<IReader, T>> MakeDeserializerExpression(ParameterExpression paramReader,
+            string className)
         {
             var paramNew = Expression.New(typeof(T).GetConstructor(Type.EmptyTypes));
             var paramT = Expression.Variable(typeof(T), className);
@@ -20,16 +21,14 @@ namespace Cookie.SerDes.Des
 
             var properties = GetProperties();
 
-            var variableExpressions = new List<ParameterExpression> { paramT };
-            var contentExpressions = new List<Expression> { assignPacket };
+            var variableExpressions = new List<ParameterExpression> {paramT};
+            var contentExpressions = new List<Expression> {assignPacket};
             foreach (var property in properties)
+            foreach (var part in DeserializerPartsManager.Parts)
             {
-                foreach (var part in DeserializerPartsManager.Parts)
-                {
-                    if (!part.Predicat(property)) continue;
-                    part.OnMatch(variableExpressions, contentExpressions, property, paramT, paramReader);
-                    break;
-                }
+                if (!part.Predicat(property)) continue;
+                part.OnMatch(variableExpressions, contentExpressions, property, paramT, paramReader);
+                break;
             }
 
             var returnTarget = Expression.Label(typeof(T));
@@ -60,12 +59,10 @@ namespace Cookie.SerDes.Des
             var properties = new List<PropertyInfo>();
 
             foreach (var type in types)
-            {
                 properties.AddRange(
                     type.GetProperties().Where(p => p.CanRead
                                                     && p.CanWrite
                                                     && p.DeclaringType.FullName.Equals(type.FullName)));
-            }
 
             return properties.ToImmutableArray();
         }

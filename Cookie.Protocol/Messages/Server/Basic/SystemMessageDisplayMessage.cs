@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Server.Basic
@@ -9,8 +8,10 @@ namespace Cookie.Protocol.Messages.Server.Basic
     {
         [RegularBool]
         public bool HangUp { get; set; }
+
         [CustomVar]
         public ushort MsgId { get; set; }
+
         [LengthType(typeof(short), true)]
         public string[] Parameters { get; set; }
     }

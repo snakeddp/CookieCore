@@ -7,6 +7,7 @@ namespace Cookie.Protocol.Messages.Game.Character.Stats
     public class CharacterLevelUpInformationMessage : CharacterLevelUpMessage
     {
         public string Name { get; set; }
+
         [CustomVar]
         public long Id { get; set; }
     }

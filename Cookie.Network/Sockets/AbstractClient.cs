@@ -1,26 +1,32 @@
-﻿using Cookie.SerDes.Managers;
-using System;
+﻿using System;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
+using Cookie.SerDes.Managers;
 
 namespace Cookie.Network.Sockets
 {
     public abstract class AbstractClient
     {
-        public Socket Socket { get; set; }
         private readonly CancellationToken _receiveLoopToken;
-        public EndPoint SocketIp => Socket.RemoteEndPoint;
 
         protected AbstractClient(IPAddress toConnect, int port)
         {
             _receiveLoopToken = new CancellationToken();
             Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            var toConnectEndPoint = new IPEndPoint(toConnect, port);   
+            var toConnectEndPoint = new IPEndPoint(toConnect, port);
             Socket.Connect(toConnectEndPoint);
         }
+
+        protected AbstractClient(IPEndPoint ipToConnect) :
+            this(ipToConnect.Address, ipToConnect.Port)
+        {
+        }
+
+        public Socket Socket { get; set; }
+        public EndPoint SocketIp => Socket.RemoteEndPoint;
 
         public void Start()
         {
@@ -32,39 +38,47 @@ namespace Cookie.Network.Sockets
             //
         }
 
-        protected AbstractClient(IPEndPoint ipToConnect) :
-            this(ipToConnect.Address, ipToConnect.Port)
-        { }
+        public void Write(string message)
+        {
+            Console.WriteLine($"{message}");
+        }
 
-        public void Write(string message) => Console.WriteLine($"{message}");
+        public virtual void OnCreate()
+        {
+            Write("Client created");
+        }
 
-        public virtual void OnCreate() => Write("Client created");
-        public virtual void OnReceive(ArraySegment<byte> buffer, int length) {}/* => Write($"Received {length} bytes");*/
-        
-        public Task LaunchReceiveLoop() => Task.Run(
-            async () =>
-            {
-                try
+        public virtual void OnReceive(ArraySegment<byte> buffer, int length)
+        {
+        } /* => Write($"Received {length} bytes");*/
+
+        public Task LaunchReceiveLoop()
+        {
+            return Task.Run(
+                async () =>
                 {
-                    for (;;)
+                    try
                     {
-                        var segment = new ArraySegment<byte>(new byte[4096]);
+                        for (;;)
+                        {
+                            var segment = new ArraySegment<byte>(new byte[4096]);
 
-                        var length =
-                            await Socket.ReceiveAsync(segment, SocketFlags.None);
+                            var length =
+                                await Socket.ReceiveAsync(segment, SocketFlags.None);
 
-                        if (length < 1)
-                            Socket.Dispose();
+                            if (length < 1)
+                                Socket.Dispose();
 
-                        OnReceive(segment, length);
+                            OnReceive(segment, length);
+                        }
                     }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    throw;
-                }
-            }, _receiveLoopToken);
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                        throw;
+                    }
+                }, _receiveLoopToken);
+        }
 
         public async Task Send<T>(T message)
         {

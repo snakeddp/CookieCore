@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Context.Roleplay
@@ -8,6 +7,7 @@ namespace Cookie.Protocol.Messages.Game.Context.Roleplay
     public class TeleportOnSameMapMessage
     {
         public double TargetId { get; set; }
+
         [CustomVar]
         public ushort CellId { get; set; }
     }

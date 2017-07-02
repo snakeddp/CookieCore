@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Types.Game.Achievement
@@ -9,6 +8,7 @@ namespace Cookie.Protocol.Types.Game.Achievement
     {
         [CustomVar]
         public uint Id { get; set; }
+
         [CustomVar]
         public ushort MaxValue { get; set; }
     }

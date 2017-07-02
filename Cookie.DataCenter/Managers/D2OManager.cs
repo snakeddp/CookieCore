@@ -8,13 +8,11 @@ namespace Cookie.DataCenter.Managers
 {
     public static class D2OManager
     {
-        private static Dictionary<string, D2OUnpacker> D2OUnpackers { get; }
-
         static D2OManager()
         {
             var paths = Directory.GetFiles(Path.GetFullPath(@".\D2OFiles\"), "*.d2o");
 
-            if(!paths.Any())
+            if (!paths.Any())
                 throw new ArgumentNullException(nameof(paths));
 
             D2OUnpackers = new Dictionary<string, D2OUnpacker>(paths.Length);
@@ -24,6 +22,8 @@ namespace Cookie.DataCenter.Managers
                 D2OUnpackers.Add(Path.GetFileNameWithoutExtension(path), new D2OUnpacker(path));
         }
 
+        private static Dictionary<string, D2OUnpacker> D2OUnpackers { get; }
+
         public static void DisplayAll<T>()
         {
             foreach (var v in D2OUnpackers)
@@ -31,12 +31,13 @@ namespace Cookie.DataCenter.Managers
                 var unpacker = v.Value;
                 var objects = unpacker.GetObjects<T>();
 
-                foreach(var o in objects)
+                foreach (var o in objects)
                     Console.WriteLine($"{o}");
             }
         }
 
         public static void Init()
-        { }
+        {
+        }
     }
 }

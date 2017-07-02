@@ -1,21 +1,16 @@
-﻿using Cookie.ProtocolBuilder.Interfaces;
+﻿using System.IO;
+using System.Linq;
+using System.Text;
+using Cookie.ProtocolBuilder.Interfaces;
 using Cookie.ProtocolBuilder.Json;
 using Cookie.ProtocolBuilder.Json.Serializables.Protocol;
 using Cookie.ProtocolBuilder.Managers;
 using Cookie.ProtocolBuilder.Parts.Usings;
-using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace Cookie.ProtocolBuilder.Writers
 {
     public class MessageClassWriter : IClassWriter
     {
-        public ProtocolClass Class { get; }
-        public D2JsonProvider Provider { get; }
-        public string ClassContent => _writer.ToString();
-        public string ClassPath => $@"{Directory.GetCurrentDirectory()}\{Class.Namespace.NamespaceToPath()}{Class.Name}.cs";
-
         private readonly StringBuilder _writer;
 
         static MessageClassWriter()
@@ -31,6 +26,13 @@ namespace Cookie.ProtocolBuilder.Writers
 
             _writer = new StringBuilder();
         }
+
+        public D2JsonProvider Provider { get; }
+        public ProtocolClass Class { get; }
+        public string ClassContent => _writer.ToString();
+
+        public string ClassPath =>
+            $@"{Directory.GetCurrentDirectory()}\{Class.Namespace.NamespaceToPath()}{Class.Name}.cs";
 
         public bool TryCreateRepositories()
         {
@@ -66,7 +68,7 @@ namespace Cookie.ProtocolBuilder.Writers
         {
             _writer.AppendLine("");
             _writer.AppendLine("using Cookie.Core.Attributes.Class;");
-                
+
             foreach (var part in PartsManager<IUsingPart>.Parts)
             {
                 var predicat = part.Predicat(Class);
@@ -82,7 +84,7 @@ namespace Cookie.ProtocolBuilder.Writers
             foreach (var f in Class.Fields)
             {
                 var typePart = new Types();
-                if(typePart.Predicat(f))
+                if (typePart.Predicat(f))
                     typePart.OnMatch(_writer, f, Provider);
             }
         }
@@ -103,7 +105,6 @@ namespace Cookie.ProtocolBuilder.Writers
                 : $"    public class {Class.Name} : {Class.Parent}");
 
             _writer.AppendLine("    {");
-            
         }
 
         public void WriteProperties()
@@ -115,15 +116,13 @@ namespace Cookie.ProtocolBuilder.Writers
             }
 
             foreach (var f in Class.Fields)
+            foreach (var part in PartsManager<IFieldPart>.Parts)
             {
-                foreach (var part in PartsManager<IFieldPart>.Parts)
-                {
-                    var predicat = part.Predicat(f);
+                var predicat = part.Predicat(f);
 
-                    if (!predicat) continue;
-                    part.OnMatch(_writer, f);
-                    break;
-                }
+                if (!predicat) continue;
+                part.OnMatch(_writer, f);
+                break;
             }
 
             EndClass();

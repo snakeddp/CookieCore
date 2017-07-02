@@ -15,7 +15,7 @@ namespace Cookie.SerDes.Ser
                     writer.WriteValue((short) length);
                     break;
                 case 3:
-                    writer.WriteValue((byte) (length >> 16 & 255));
+                    writer.WriteValue((byte) ((length >> 16) & 255));
                     writer.WriteValue((short) (length & 65535));
                     break;
             }

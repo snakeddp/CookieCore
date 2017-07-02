@@ -12,14 +12,10 @@ namespace Cookie.DataCenter.D2O
 {
     public class D2OUnpacker
     {
-        private readonly IReader _reader;
+        private readonly int _contentOffset;
         private readonly D2OJsonUnpacker _jsonUnpacker;
         private readonly Dictionary<int, int> _objectMapper;
-        private readonly int _contentOffset;
-
-        public string FileName { get; }
-        public string FilePath { get; }
-        public Dictionary<int, D2OClass> Objects { get; }
+        private readonly IReader _reader;
 
         public D2OUnpacker(string filePath)
         {
@@ -28,7 +24,7 @@ namespace Cookie.DataCenter.D2O
 
             var d2OFileBytes = File.ReadAllBytes(filePath);
 
-            if(!d2OFileBytes.Any())
+            if (!d2OFileBytes.Any())
                 throw new ArgumentNullException(nameof(d2OFileBytes));
 
             Console.WriteLine($"Reading {FileName}.d2o ...");
@@ -42,7 +38,7 @@ namespace Cookie.DataCenter.D2O
 
                 var signature = _reader.ReadString(StringType.Utf8);
 
-                if(signature != "AKSF")
+                if (signature != "AKSF")
                     throw new ArgumentException($"{FileName} is corrupted", nameof(d2OFileBytes));
 
                 _reader.Position += 2;
@@ -79,7 +75,7 @@ namespace Cookie.DataCenter.D2O
             var classCount = _reader.ReadValue<int>();
 
             Objects = new Dictionary<int, D2OClass>(classCount);
-            for (var i = 0 ; i < classCount ; i++)
+            for (var i = 0; i < classCount; i++)
             {
                 var classId = _reader.ReadValue<int>();
 
@@ -90,7 +86,7 @@ namespace Cookie.DataCenter.D2O
 
                 var fieldsCount = _reader.ReadValue<int>();
 
-                for(var j = 0 ; j < fieldsCount ; j++)
+                for (var j = 0; j < fieldsCount; j++)
                 {
                     d2OClass.AddField(_reader);
                     i++;
@@ -101,16 +97,28 @@ namespace Cookie.DataCenter.D2O
             _jsonUnpacker = new D2OJsonUnpacker(_reader, _objectMapper, Objects);
         }
 
+        public string FileName { get; }
+        public string FilePath { get; }
+        public Dictionary<int, D2OClass> Objects { get; }
+
         public T GetObjectById<T>(int objectId)
-            => JsonConvert.DeserializeObject<T>(_jsonUnpacker.GetJsonObjectString(objectId));
+        {
+            return JsonConvert.DeserializeObject<T>(_jsonUnpacker.GetJsonObjectString(objectId));
+        }
 
         public T[] GetObjects<T>()
-            => JsonConvert.DeserializeObject<T[]>(_jsonUnpacker.JsonFullString);
+        {
+            return JsonConvert.DeserializeObject<T[]>(_jsonUnpacker.JsonFullString);
+        }
 
         public string GetObjectJsonStringById(int objectId)
-            => _jsonUnpacker.GetJsonObjectString(objectId);
+        {
+            return _jsonUnpacker.GetJsonObjectString(objectId);
+        }
 
         public string GetObjectJsonFullString()
-            => _jsonUnpacker.JsonFullString;
+        {
+            return _jsonUnpacker.JsonFullString;
+        }
     }
 }

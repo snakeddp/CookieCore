@@ -8,6 +8,7 @@ using Cookie.ProtocolBuilder.Writers;
 using static System.Console;
 using static Cookie.ProtocolBuilder.Builders.ProtocolJsonBuilder;
 using static Cookie.ProtocolBuilder.Extensions.StringExtensions;
+
 #pragma warning disable 1573
 namespace Cookie.ProtocolBuilder
 {
@@ -16,8 +17,8 @@ namespace Cookie.ProtocolBuilder
         internal static string ProtocolJsonPath { get; set; }
 
         /// <summary>
-        /// Shoud write the number of messages, types and enums
-        /// Messages, types and enums should be handled with proper directory & file writing
+        ///     Shoud write the number of messages, types and enums
+        ///     Messages, types and enums should be handled with proper directory & file writing
         /// </summary>
         /// <param name="args">read line</param>
         internal static void Main(string[] args)
@@ -60,17 +61,18 @@ namespace Cookie.ProtocolBuilder
         }
 
         /// <summary>
-        /// App logic, ask for path of d2json output if not exist
-        /// If you don't have a .json file path to provide, press enter
-        /// The .json will be auto-generated using d2json if app is in the current folder
+        ///     App logic, ask for path of d2json output if not exist
+        ///     If you don't have a .json file path to provide, press enter
+        ///     The .json will be auto-generated using d2json if app is in the current folder
         /// </summary>
         /// <param name="args">Main method args</param>
-        /// <returns><see cref="D2JsonProvider"/> object wich contains classes</returns>
+        /// <returns><see cref="D2JsonProvider" /> object wich contains classes</returns>
         internal static void ProcessArgs(string[] args, out D2JsonProvider d2JsonProvider)
         {
             Title = "Cookie Protocol Builder - DevChris";
             WriteLine("\n--------------------------------------------------------------\n");
-            WriteLine(@"_________                __   .__                                                                     
+            WriteLine(
+                @"_________                __   .__                                                                     
 \_   ___ \  ____   ____ |  | _|__| ____                                                               
 /    \  \/ /  _ \ /  _ \|  |/ /  |/ __ \                                                              
 \     \___(  <_> |  <_> )    <|  \  ___/                                                              
@@ -95,12 +97,11 @@ __________                __                      .__    __________      .__.__ 
                 while (args.Length != 1)
                 {
                     Write("> ");
-                    args = new[] { ReadLine() };
+                    args = new[] {ReadLine()};
 
                     if (string.IsNullOrEmpty(args[0]))
                         Throw.If(!TryBuildNewProtocol(), nameof(TryBuildNewProtocol));
-                    else
-                    if (args[0].IsValidPath())
+                    else if (args[0].IsValidPath())
                         ProtocolJsonPath = args[0];
                 }
             }

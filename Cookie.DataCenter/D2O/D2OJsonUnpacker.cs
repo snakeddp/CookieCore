@@ -12,11 +12,9 @@ namespace Cookie.DataCenter.D2O
 {
     public class D2OJsonUnpacker
     {
-        private readonly IReader _reader;
-        private readonly Dictionary<int, int> _objectMapper;
         private readonly Dictionary<int, D2OClass> _d2OClasses;
-
-        public string JsonFullString { get; }
+        private readonly Dictionary<int, int> _objectMapper;
+        private readonly IReader _reader;
 
         public D2OJsonUnpacker(IReader reader, Dictionary<int, int> objectMapper, Dictionary<int, D2OClass> d2OClasses)
         {
@@ -30,15 +28,15 @@ namespace Cookie.DataCenter.D2O
             var indexTableKeys = _objectMapper.Keys.ToArray();
 
             for (var i = 0; i < indexTableKeys.Length; i++)
-            {
                 stringBuilder.Append(GetJsonObjectString(indexTableKeys[i]))
                     .Append(WriteCommaIfHasMore(indexTableKeys.Length, i))
                     .AppendLine();
-            }
             stringBuilder.Append("]");
 
             JsonFullString = stringBuilder.ToString();
         }
+
+        public string JsonFullString { get; }
 
         public string GetJsonObjectString(int objectId)
         {
@@ -55,10 +53,14 @@ namespace Cookie.DataCenter.D2O
         }
 
         private static string WriteCommaIfHasMore(int count, int i)
-            => HasMoreElement(count, i) ? "," : string.Empty;
+        {
+            return HasMoreElement(count, i) ? "," : string.Empty;
+        }
 
         private static bool HasMoreElement(int count, int i)
-            => i != count - 1;
+        {
+            return i != count - 1;
+        }
 
 
         private string GetObjectBuilder(int classId)
@@ -66,22 +68,22 @@ namespace Cookie.DataCenter.D2O
             var classDefinition = _d2OClasses[classId];
             return GetPropertiesBuilder(classDefinition);
         }
+
         private string GetPropertiesBuilder(D2OClass d2Oclass)
         {
             var propertyBuilder = new StringBuilder();
             var numberOfFields = d2Oclass.Properties.Count;
             propertyBuilder.AppendLine("{");
             for (var i = 0; i < numberOfFields; i++)
-            {
                 propertyBuilder
                     .Append(GetPropertyBuilder(d2Oclass.Properties[i]))
                     .Append(WriteCommaIfHasMore(numberOfFields, i))
                     .AppendLine();
-            }
             propertyBuilder.Append("}");
 
             return propertyBuilder.ToString();
         }
+
         private string GetPropertyBuilder(D2OProperty property)
         {
             var propertyBuilder = new StringBuilder();
@@ -93,6 +95,7 @@ namespace Cookie.DataCenter.D2O
 
             return propertyBuilder.ToString();
         }
+
         private string GetFieldValueBuilder(D2OProperty property)
         {
             var propertyValueBuilder = new StringBuilder();
@@ -104,11 +107,9 @@ namespace Cookie.DataCenter.D2O
                     var vectorLength = _reader.ReadValue<int>();
 
                     for (var i = 0; i < vectorLength; i++)
-                    {
                         propertyValueBuilder
                             .Append(GetFieldValueBuilder(property.InnerProperty))
                             .Append(WriteCommaIfHasMore(vectorLength, i));
-                    }
 
                     propertyValueBuilder.Append("]");
                     break;
@@ -125,10 +126,13 @@ namespace Cookie.DataCenter.D2O
                     propertyValueBuilder.Append(JsonConvert.ToString(_reader.ReadString(StringType.Utf8)));
                     break;
                 case D2ODataType.Bool:
-                    propertyValueBuilder.Append(JsonConvert.ToString(_reader.ReadValue<bool>())); //in json bool is true/false not True/False
+                    propertyValueBuilder.Append(
+                        JsonConvert.ToString(_reader.ReadValue<bool>())); //in json bool is true/false not True/False
                     break;
                 case D2ODataType.Double:
-                    propertyValueBuilder.Append(JsonConvert.ToString(_reader.ReadValue<double>())); //handling the "," vs "." problem of the culture specifics
+                    propertyValueBuilder.Append(
+                        JsonConvert.ToString(_reader
+                            .ReadValue<double>())); //handling the "," vs "." problem of the culture specifics
                     break;
                 default:
                     if (property.PropertyType > 0) //if type is an object
@@ -138,7 +142,9 @@ namespace Cookie.DataCenter.D2O
                             propertyValueBuilder.Append(GetObjectBuilder(classId));
                     }
                     else
+                    {
                         throw new ArgumentException(nameof(property.PropertyType));
+                    }
                     break;
             }
             return propertyValueBuilder.ToString();

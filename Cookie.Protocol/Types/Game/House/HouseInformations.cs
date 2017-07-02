@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Types.Game.House
@@ -9,6 +8,7 @@ namespace Cookie.Protocol.Types.Game.House
     {
         [CustomVar]
         public uint HouseId { get; set; }
+
         [CustomVar]
         public ushort ModelId { get; set; }
     }

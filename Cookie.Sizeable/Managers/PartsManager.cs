@@ -8,8 +8,6 @@ namespace Cookie.Sizeable.Managers
 {
     internal static class PartsManager
     {
-        internal static ImmutableList<ISizePart> Parts { get; }
-
         static PartsManager()
         {
             var ass = typeof(ISizePart).GetTypeInfo().Assembly;
@@ -17,12 +15,16 @@ namespace Cookie.Sizeable.Managers
             var types =
                 ass.GetTypes()
                     .Where(
-                        type => type.GetTypeInfo().IsClass && !type.GetTypeInfo().IsAbstract && type.GetInterfaces().Contains(typeof(ISizePart)));
+                        type => type.GetTypeInfo().IsClass && !type.GetTypeInfo().IsAbstract &&
+                                type.GetInterfaces().Contains(typeof(ISizePart)));
 
-            Parts = types.Select(type => (ISizePart)Activator.CreateInstance(type)).ToImmutableList();
+            Parts = types.Select(type => (ISizePart) Activator.CreateInstance(type)).ToImmutableList();
         }
 
+        internal static ImmutableList<ISizePart> Parts { get; }
+
         public static void Init()
-        { }
+        {
+        }
     }
 }

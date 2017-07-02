@@ -13,6 +13,7 @@ namespace Cookie.Memory.Caching
     {
         // ReSharper disable once StaticMemberInGenericType
         private static readonly Dictionary<int, byte[]> Cache = new Dictionary<int, byte[]>();
+
         private static readonly Func<T, byte[]> SerializerFunc;
 
 
@@ -24,11 +25,12 @@ namespace Cookie.Memory.Caching
         }
 
         public static void Init()
-        { }
+        {
+        }
 
         public static byte[] Serialize(T message)
         {
-            var key = HashBuilder.GenerateHash<T>(message);
+            var key = HashBuilder.GenerateHash(message);
 
             if (Cache.TryGetValue(key, out byte[] value))
                 return value;
@@ -44,7 +46,7 @@ namespace Cookie.Memory.Caching
             var result = Expression.Variable(typeof(byte[]), "result");
 
             var serMi = typeof(SerDesManager).GetMethods()
-                .First(s => s.GetParameters().Length < 2 )
+                .First(s => s.GetParameters().Length < 2)
                 .MakeGenericMethod(typeof(T));
 
             var callSer = Expression.Call(serMi, paramT);
@@ -55,8 +57,8 @@ namespace Cookie.Memory.Caching
             var returnLabel = Expression.Label(returnTarget, Expression.Constant(new byte[0]));
             var returnExpression = Expression.Return(returnTarget, result, typeof(byte[]));
 
-            var block = Expression.Block(new [] { result },
-                 assignResult, returnExpression, returnLabel);
+            var block = Expression.Block(new[] {result},
+                assignResult, returnExpression, returnLabel);
 
             var lambda = Expression.Lambda<Func<T, byte[]>>(block, paramT);
 

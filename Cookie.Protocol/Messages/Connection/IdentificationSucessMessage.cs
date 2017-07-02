@@ -9,6 +9,7 @@ namespace Cookie.Protocol.Messages.Connection
     {
         [ForceNewByte]
         public bool HasRights { get; set; }
+
         public bool WasAlreadyConnected { get; set; }
 
         public string Login { get; set; }

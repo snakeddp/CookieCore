@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Chat
@@ -9,6 +8,7 @@ namespace Cookie.Protocol.Messages.Game.Chat
     {
         [CustomVar]
         public long ReceiverId { get; set; }
+
         public string ReceiverName { get; set; }
     }
 }

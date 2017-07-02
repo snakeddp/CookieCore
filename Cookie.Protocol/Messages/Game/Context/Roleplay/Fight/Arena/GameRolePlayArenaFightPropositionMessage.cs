@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Context.Roleplay.Fight.Arena
@@ -8,8 +7,10 @@ namespace Cookie.Protocol.Messages.Game.Context.Roleplay.Fight.Arena
     public class GameRolePlayArenaFightPropositionMessage
     {
         public uint FightId { get; set; }
+
         [LengthType(typeof(short), true)]
         public double[] AlliesId { get; set; }
+
         [CustomVar]
         public ushort Duration { get; set; }
     }

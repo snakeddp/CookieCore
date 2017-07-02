@@ -7,12 +7,14 @@ namespace Cookie.ProtocolBuilder.Parts.Fields
 {
     public class Primitive : IFieldPart
     {
-        public bool Predicat(Field fi) => 
-               !fi.IsVector 
-            && fi.Type.IsPrimitiveType() 
-            && !fi.WriteMethod.Contains("Var") 
-            && !fi.UseTypeManager 
-            && !string.IsNullOrEmpty(fi.WriteMethod);
+        public bool Predicat(Field fi)
+        {
+            return !fi.IsVector
+                   && fi.Type.IsPrimitiveType()
+                   && !fi.WriteMethod.Contains("Var")
+                   && !fi.UseTypeManager
+                   && !string.IsNullOrEmpty(fi.WriteMethod);
+        }
 
 
         public void OnMatch(StringBuilder writer, Field fi)

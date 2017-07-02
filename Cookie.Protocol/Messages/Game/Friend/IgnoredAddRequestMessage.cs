@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Friend
@@ -8,6 +7,7 @@ namespace Cookie.Protocol.Messages.Game.Friend
     public class IgnoredAddRequestMessage
     {
         public string Name { get; set; }
+
         [RegularBool]
         public bool Session { get; set; }
     }

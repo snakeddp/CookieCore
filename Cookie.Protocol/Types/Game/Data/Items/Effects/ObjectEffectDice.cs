@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Types.Game.Data.Items.Effects
@@ -9,8 +8,10 @@ namespace Cookie.Protocol.Types.Game.Data.Items.Effects
     {
         [CustomVar]
         public ushort DiceNum { get; set; }
+
         [CustomVar]
         public ushort DiceSide { get; set; }
+
         [CustomVar]
         public ushort DiceConst { get; set; }
     }

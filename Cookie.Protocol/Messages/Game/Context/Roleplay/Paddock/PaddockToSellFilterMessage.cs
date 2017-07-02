@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Context.Roleplay.Paddock
@@ -10,6 +9,7 @@ namespace Cookie.Protocol.Messages.Game.Context.Roleplay.Paddock
         public int AreaId { get; set; }
         public byte AtLeastNbMount { get; set; }
         public byte AtLeastNbMachine { get; set; }
+
         [CustomVar]
         public long MaxPrice { get; set; }
     }

@@ -1,12 +1,12 @@
-﻿using Cookie.Core.Attributes.Class;
-using Cookie.Core.Helpers;
-using Cookie.Sizeable.Managers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using Cookie.Core.Attributes.Class;
+using Cookie.Core.Helpers;
+using Cookie.Sizeable.Managers;
 
 namespace Cookie.Sizeable.Size
 {
@@ -33,7 +33,7 @@ namespace Cookie.Sizeable.Size
             var returnLabel = Expression.Label(returnTarget, Expression.Constant(0));
             var returnExpression = Expression.Return(returnTarget, result, typeof(int));
 
-            var block = Expression.Block(new[] { result }, assign, returnExpression, returnLabel);
+            var block = Expression.Block(new[] {result}, assign, returnExpression, returnLabel);
             var lambda = Expression.Lambda<Func<T, int>>(block, paramT);
 
             return lambda;
@@ -50,13 +50,14 @@ namespace Cookie.Sizeable.Size
             var returnLabel = Expression.Label(returnTarget, Expression.Constant(0));
             var returnExpression = Expression.Return(returnTarget, result, typeof(int));
 
-            var block = Expression.Block(new[] { result }, assign, returnExpression, returnLabel);
+            var block = Expression.Block(new[] {result}, assign, returnExpression, returnLabel);
             var lambda = Expression.Lambda<Func<T, int>>(block, paramT);
 
             return lambda;
         }
 
-        public static Expression<Func<T, bool, int>> MakeNetworkMessageSizeExpression(ParameterExpression paramT, ParameterExpression paramBool)
+        public static Expression<Func<T, bool, int>> MakeNetworkMessageSizeExpression(ParameterExpression paramT,
+            ParameterExpression paramBool)
         {
             var result = Expression.Variable(typeof(int), "i");
             var sizeOfLen = typeof(HeaderHelper).GetMethod("SizeOfLength");
@@ -65,22 +66,21 @@ namespace Cookie.Sizeable.Size
             var sizeExpressions = new List<Expression>();
 
             foreach (var property in properties)
+            foreach (var part in PartsManager.Parts)
             {
-                foreach (var part in PartsManager.Parts)
-                {
-                    if (!part.Predicat(property)) continue;
-                    part.OnMatch(sizeExpressions, property, paramT);
-                    break;
-                }
+                if (!part.Predicat(property)) continue;
+                part.OnMatch(sizeExpressions, property, paramT);
+                break;
             }
 
             var content = sizeExpressions.Select(e =>
-                Expression.AddAssign(result, e))
+                    Expression.AddAssign(result, e))
                 .Cast<Expression>()
                 .ToList();
 
             var ifExp = Expression.IfThen(paramBool,
-                Expression.AddAssign(result, Expression.Add(Expression.Call(sizeOfLen, result), Expression.Constant(2))));
+                Expression.AddAssign(result,
+                    Expression.Add(Expression.Call(sizeOfLen, result), Expression.Constant(2))));
 
             content.Add(ifExp);
 
@@ -92,7 +92,7 @@ namespace Cookie.Sizeable.Size
             content.Add(returnLabel);
 
 
-            var block = Expression.Block(new[] { result }, content);
+            var block = Expression.Block(new[] {result}, content);
 
             var lambda = Expression.Lambda<Func<T, bool, int>>(block, paramT, paramBool);
 
@@ -105,19 +105,17 @@ namespace Cookie.Sizeable.Size
             var sizeExpressions = new List<Expression>();
 
             foreach (var property in properties)
+            foreach (var part in PartsManager.Parts)
             {
-                foreach (var part in PartsManager.Parts)
-                {
-                    if (!part.Predicat(property)) continue;
-                    part.OnMatch(sizeExpressions, property, paramT);
-                    break;
-                }
+                if (!part.Predicat(property)) continue;
+                part.OnMatch(sizeExpressions, property, paramT);
+                break;
             }
 
             var result = Expression.Variable(typeof(int), "i");
 
             var content = sizeExpressions.Select(e =>
-                Expression.AddAssign(result, e))
+                    Expression.AddAssign(result, e))
                 .Cast<Expression>()
                 .ToList();
 
@@ -131,7 +129,7 @@ namespace Cookie.Sizeable.Size
             content.Add(returnExpression);
             content.Add(returnLabel);
 
-            var block = Expression.Block(new[] { result }, content);
+            var block = Expression.Block(new[] {result}, content);
 
             var lambda = Expression.Lambda<Func<T, int>>(block, paramT);
 
@@ -152,12 +150,10 @@ namespace Cookie.Sizeable.Size
             var properties = new List<PropertyInfo>();
 
             foreach (var type in types)
-            {
                 properties.AddRange(
                     type.GetProperties().Where(p => p.CanRead
                                                     && p.CanWrite
                                                     && p.DeclaringType.FullName.Equals(type.FullName)));
-            }
 
             return properties.ToImmutableArray();
         }

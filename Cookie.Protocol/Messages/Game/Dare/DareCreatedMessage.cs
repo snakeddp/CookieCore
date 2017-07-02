@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 using Cookie.Protocol.Types.Game.Dare;
 
@@ -9,6 +8,7 @@ namespace Cookie.Protocol.Messages.Game.Dare
     public class DareCreatedMessage
     {
         public DareInformations DareInfos { get; set; }
+
         [RegularBool]
         public bool NeedNotifications { get; set; }
     }

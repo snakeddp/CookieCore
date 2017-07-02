@@ -1,7 +1,5 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
-using Cookie.Protocol.Types.Game.Paddock;
 
 namespace Cookie.Protocol.Types.Game.Paddock
 {
@@ -12,8 +10,10 @@ namespace Cookie.Protocol.Types.Game.Paddock
         public short WorldX { get; set; }
         public short WorldY { get; set; }
         public int MapId { get; set; }
+
         [CustomVar]
         public ushort SubAreaId { get; set; }
+
         [RegularBool]
         public bool Abandonned { get; set; }
     }

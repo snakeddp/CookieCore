@@ -39,14 +39,10 @@ namespace Cookie.Network.Managers
 
                 // enough bytes in the buffer to build a complete message
                 if (reader.BytesAvailable >= dataLength)
-                {
                     data = reader.ReadArray<byte>(dataLength);
-                }
                 // not enough bytes, so we read what we can
                 else if (dataLength > reader.BytesAvailable)
-                {
                     data = reader.ReadArray<byte>(reader.BytesAvailable);
-                }
             }
             //second case : the message was split and it missed some bytes
             if (data == null || dataLength == 0 || data.Length >= dataLength) return true;
@@ -62,7 +58,7 @@ namespace Cookie.Network.Managers
 
             if (bytesToRead == 0) return true;
             var oldLength = data.Length;
-            Array.Resize(ref data, (data.Length + bytesToRead));
+            Array.Resize(ref data, data.Length + bytesToRead);
             Array.Copy(reader.ReadArray<byte>(bytesToRead), 0, data, oldLength, bytesToRead);
 
             return true;

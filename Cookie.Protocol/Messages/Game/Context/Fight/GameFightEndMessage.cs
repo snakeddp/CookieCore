@@ -1,7 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
-using Cookie.Protocol.Types.Game.Context.Fight;
-using Cookie.Protocol.Types.Game.Context.Roleplay.Party;
+﻿using Cookie.Core.Attributes.Class;
 
 namespace Cookie.Protocol.Messages.Game.Context.Fight
 {

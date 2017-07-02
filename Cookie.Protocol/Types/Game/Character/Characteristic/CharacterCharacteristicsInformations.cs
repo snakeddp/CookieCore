@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 using Cookie.Protocol.Types.Game.Character.Alignment;
 
@@ -10,33 +9,48 @@ namespace Cookie.Protocol.Types.Game.Character.Characteristic
     {
         [CustomVar]
         public long Experience { get; set; }
+
         [CustomVar]
         public long ExperienceLevelFloor { get; set; }
+
         [CustomVar]
         public long ExperienceNextLevelFloor { get; set; }
+
         [CustomVar]
         public long ExperienceBonusLimit { get; set; }
+
         [CustomVar]
         public long Kamas { get; set; }
+
         [CustomVar]
         public ushort StatsPoints { get; set; }
+
         [CustomVar]
         public ushort AdditionnalPoints { get; set; }
+
         [CustomVar]
         public ushort SpellsPoints { get; set; }
+
         public ActorExtendedAlignmentInformations AlignmentInfos { get; set; }
+
         [CustomVar]
         public uint LifePoints { get; set; }
+
         [CustomVar]
         public uint MaxLifePoints { get; set; }
+
         [CustomVar]
         public ushort EnergyPoints { get; set; }
+
         [CustomVar]
         public ushort MaxEnergyPoints { get; set; }
+
         [CustomVar]
         public short ActionPointsCurrent { get; set; }
+
         [CustomVar]
         public short MovementPointsCurrent { get; set; }
+
         public CharacterBaseCharacteristic Initiative { get; set; }
         public CharacterBaseCharacteristic Prospecting { get; set; }
         public CharacterBaseCharacteristic ActionPoints { get; set; }
@@ -51,8 +65,10 @@ namespace Cookie.Protocol.Types.Game.Character.Characteristic
         public CharacterBaseCharacteristic SummonableCreaturesBoost { get; set; }
         public CharacterBaseCharacteristic Reflect { get; set; }
         public CharacterBaseCharacteristic CriticalHit { get; set; }
+
         [CustomVar]
         public ushort CriticalHitWeapon { get; set; }
+
         public CharacterBaseCharacteristic CriticalMiss { get; set; }
         public CharacterBaseCharacteristic HealBonus { get; set; }
         public CharacterBaseCharacteristic AllDamagesBonus { get; set; }

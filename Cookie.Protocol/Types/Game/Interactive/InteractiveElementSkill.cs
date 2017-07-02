@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Types.Game.Interactive
@@ -9,6 +8,7 @@ namespace Cookie.Protocol.Types.Game.Interactive
     {
         [CustomVar]
         public uint SkillId { get; set; }
+
         public uint SkillInstanceUid { get; set; }
     }
 }

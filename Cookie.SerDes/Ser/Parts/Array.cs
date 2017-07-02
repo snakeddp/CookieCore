@@ -11,7 +11,10 @@ namespace Cookie.SerDes.Ser.Parts
 {
     internal class Array : ISerializerPart
     {
-        public bool Predicat(PropertyInfo property) => property.PropertyType.GetTypeInfo().IsArray;
+        public bool Predicat(PropertyInfo property)
+        {
+            return property.PropertyType.GetTypeInfo().IsArray;
+        }
 
         public void OnMatch(List<Expression> contentExpressions, PropertyInfo propertyInfo, ParameterExpression paramT,
             ParameterExpression paramWriter)
@@ -26,9 +29,9 @@ namespace Cookie.SerDes.Ser.Parts
             var isContentCustom = customVarAttr != null;
             var isContentPrimitive = PrimitiveTypes.Primitives.Contains(elemType);
 
-            var miLen = isTypeLenCustom ?
-                typeof(IWriter).GetMethod("WriteCustom").MakeGenericMethod(typeLen)
-              : typeof(IWriter).GetMethod("WriteValue").MakeGenericMethod(typeLen);
+            var miLen = isTypeLenCustom
+                ? typeof(IWriter).GetMethod("WriteCustom").MakeGenericMethod(typeLen)
+                : typeof(IWriter).GetMethod("WriteValue").MakeGenericMethod(typeLen);
 
             var paramProp = Expression.Property(paramT, propertyInfo);
             var paramLen = ExpressionHelpers.GetLengthProperty(paramT, propertyInfo);
@@ -43,7 +46,8 @@ namespace Cookie.SerDes.Ser.Parts
             {
                 var dlg = typeof(Serializer<>).MakeGenericType(elemType).GetProperty("SerializeAction");
 
-                var content = Expression.Invoke(Expression.Property(null, dlg), Expression.ArrayAccess(paramProp, i), paramWriter);
+                var content = Expression.Invoke(Expression.Property(null, dlg), Expression.ArrayAccess(paramProp, i),
+                    paramWriter);
 
                 finalExpression = ExpressionHelpers.For(i,
                     Expression.Constant(0),
@@ -80,7 +84,7 @@ namespace Cookie.SerDes.Ser.Parts
                     var mi = typeof(IWriter).GetMethod("WriteCustom").MakeGenericMethod(elemType);
 
                     var content = Expression.Call(paramWriter, mi,
-                            Expression.ArrayAccess(paramProp, i));
+                        Expression.ArrayAccess(paramProp, i));
 
                     finalExpression = ExpressionHelpers.For(i,
                         Expression.Constant(0),

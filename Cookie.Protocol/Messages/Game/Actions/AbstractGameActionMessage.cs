@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Actions
@@ -9,6 +8,7 @@ namespace Cookie.Protocol.Messages.Game.Actions
     {
         [CustomVar]
         public ushort ActionId { get; set; }
+
         public double SourceId { get; set; }
     }
 }

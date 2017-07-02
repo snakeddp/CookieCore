@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Context.Fight.Challenge
@@ -9,6 +8,7 @@ namespace Cookie.Protocol.Messages.Game.Context.Fight.Challenge
     {
         [CustomVar]
         public ushort ChallengeId { get; set; }
+
         [RegularBool]
         public bool Success { get; set; }
     }

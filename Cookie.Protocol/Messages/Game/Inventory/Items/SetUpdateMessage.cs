@@ -1,7 +1,5 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
-using Cookie.Protocol.Types.Game.Data.Items.Effects;
 
 namespace Cookie.Protocol.Messages.Game.Inventory.Items
 {
@@ -10,6 +8,7 @@ namespace Cookie.Protocol.Messages.Game.Inventory.Items
     {
         [CustomVar]
         public ushort SetId { get; set; }
+
         [CustomVar]
         [LengthType(typeof(short))]
         public ushort[] SetObjects { get; set; }

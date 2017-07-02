@@ -8,7 +8,10 @@ namespace Cookie.SerDes.Ser.Parts
 {
     internal class String : ISerializerPart
     {
-        public bool Predicat(PropertyInfo property) => property.PropertyType == typeof(string);
+        public bool Predicat(PropertyInfo property)
+        {
+            return property.PropertyType == typeof(string);
+        }
 
         public void OnMatch(List<Expression> contentExpressions, PropertyInfo propertyInfo, ParameterExpression paramT,
             ParameterExpression paramWriter)

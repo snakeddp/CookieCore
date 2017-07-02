@@ -1,7 +1,5 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
-using Cookie.Protocol.Types.Game.Data.Items.Effects;
 
 namespace Cookie.Protocol.Types.Game.Data.Items
 {
@@ -9,10 +7,13 @@ namespace Cookie.Protocol.Types.Game.Data.Items
     public class ObjectItem : Item
     {
         public sbyte Position { get; set; }
+
         [CustomVar]
         public ushort ObjectGID { get; set; }
+
         [CustomVar]
         public uint ObjectUID { get; set; }
+
         [CustomVar]
         public uint Quantity { get; set; }
     }

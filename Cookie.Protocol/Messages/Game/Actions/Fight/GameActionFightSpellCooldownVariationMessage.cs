@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Actions.Fight
@@ -8,8 +7,10 @@ namespace Cookie.Protocol.Messages.Game.Actions.Fight
     public class GameActionFightSpellCooldownVariationMessage : AbstractGameActionMessage
     {
         public double TargetId { get; set; }
+
         [CustomVar]
         public ushort SpellId { get; set; }
+
         [CustomVar]
         public short Value { get; set; }
     }

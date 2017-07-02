@@ -11,6 +11,9 @@
             return len > 0 ? 1 : 0;
         }
 
-        public static short SubComputeStaticHeader(short id, int typeLen) => (short)(id << 2 | typeLen);
+        public static short SubComputeStaticHeader(short id, int typeLen)
+        {
+            return (short) ((id << 2) | typeLen);
+        }
     }
 }

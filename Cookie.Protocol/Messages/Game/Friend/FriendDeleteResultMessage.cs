@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Friend
@@ -9,6 +8,7 @@ namespace Cookie.Protocol.Messages.Game.Friend
     {
         [RegularBool]
         public bool Success { get; set; }
+
         public string Name { get; set; }
     }
 }

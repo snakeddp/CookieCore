@@ -24,6 +24,7 @@ namespace Cookie.ProtocolBuilder.Json.Serializables.Protocol
             var splited = s.Split('.').ToList();
 
             #region "TooLazyTo" Code Region
+
             // TODO : find better way to do it
             splited.Remove("com");
             splited.Remove("ankamagames");
@@ -31,6 +32,7 @@ namespace Cookie.ProtocolBuilder.Json.Serializables.Protocol
             splited.Remove("network");
 
             var converted = string.Concat(splited.Select(name => $@"{name.Capitalize()}\"));
+
             #endregion
 
             return $@"{converted}";
@@ -41,6 +43,7 @@ namespace Cookie.ProtocolBuilder.Json.Serializables.Protocol
             var splited = s.Split('.').ToList();
 
             #region "TooLazyTo" Code Region
+
             // TODO : find better way to do it
             splited.Remove("com");
             splited.Remove("ankamagames");
@@ -48,6 +51,7 @@ namespace Cookie.ProtocolBuilder.Json.Serializables.Protocol
             splited.Remove("network");
 
             var converted = string.Concat(splited.Select(name => $@"{name.Capitalize()}."));
+
             #endregion
 
             return converted.Remove(converted.Length - 1);

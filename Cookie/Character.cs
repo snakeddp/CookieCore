@@ -1,9 +1,9 @@
-﻿using Cookie.Enums;
+﻿using System.Collections.Generic;
+using Cookie.Enums;
 using Cookie.Protocol.Types.Game.Character.Characteristic;
 using Cookie.Protocol.Types.Game.Character.Restriction;
 using Cookie.Protocol.Types.Game.Data.Items;
 using Cookie.Protocol.Types.Game.Look;
-using System.Collections.Generic;
 
 namespace Cookie
 {
@@ -29,10 +29,10 @@ namespace Cookie
         public EntityLook Look { get; set; }
         public sbyte Breed { get; set; }
 
-        public int LifePercentage => (int)(((double)Stats.LifePoints / (double)Stats.MaxLifePoints) * 100);
-        public int WeightPercentage => (int)(((double)Weight / (double)MaxWeight) * 100);
-        public int EnergyPercentage => (int)(((double)Stats.EnergyPoints / (double)Stats.MaxEnergyPoints) * 100);
-        public int XpPercentage => (int)(((double)Stats.Experience / (double)Stats.ExperienceNextLevelFloor) * 100);
+        public int LifePercentage => (int) (Stats.LifePoints / (double) Stats.MaxLifePoints * 100);
+        public int WeightPercentage => (int) (Weight / (double) MaxWeight * 100);
+        public int EnergyPercentage => (int) (Stats.EnergyPoints / (double) Stats.MaxEnergyPoints * 100);
+        public int XpPercentage => (int) (Stats.Experience / (double) Stats.ExperienceNextLevelFloor * 100);
 
         public int CellId { get; set; }
         public int MapId { get; set; }
@@ -100,13 +100,7 @@ namespace Cookie
             {
                 var num2 = num5;
                 num5 = num2 + 1;
-                text = string.Concat(new object[]
-                {
-                        text,
-                        "c3",
-                        num5,
-                        "3d3"
-                });
+                text = string.Concat(text, "c3", num5, "3d3");
                 num4 = 0;
                 var array5 = current2.ToString().ToCharArray();
                 var array6 = array5;
@@ -130,9 +124,7 @@ namespace Cookie
                 }
                 var flag7 = num5 >= look.IndexedColors.Length;
                 if (flag7)
-                {
                     text += "7";
-                }
             }
             var num6 = 0;
             foreach (var current3 in look.Scales)

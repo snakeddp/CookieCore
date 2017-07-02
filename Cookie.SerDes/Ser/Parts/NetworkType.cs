@@ -10,8 +10,11 @@ namespace Cookie.SerDes.Ser.Parts
 {
     internal class NetworkType : ISerializerPart
     {
-        public bool Predicat(PropertyInfo property) => !PrimitiveTypes.Primitives.Contains(property.PropertyType)
-            && property.PropertyType.GetTypeInfo().HasCustomAttribute<NetworkTypeAttribute>();
+        public bool Predicat(PropertyInfo property)
+        {
+            return !PrimitiveTypes.Primitives.Contains(property.PropertyType)
+                   && property.PropertyType.GetTypeInfo().HasCustomAttribute<NetworkTypeAttribute>();
+        }
 
         public void OnMatch(List<Expression> contentExpressions, PropertyInfo propertyInfo, ParameterExpression paramT,
             ParameterExpression paramWriter)

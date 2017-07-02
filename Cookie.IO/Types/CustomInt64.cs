@@ -15,18 +15,18 @@ namespace Cookie.IO.Types
 
         public uint High
         {
-            get { return InternalHigh; }
-            set { InternalHigh = value; }
+            get => InternalHigh;
+            set => InternalHigh = value;
         }
 
         public static CustomInt64 FromNumber(long n)
         {
-            return new CustomInt64((uint)n, (uint)Math.Floor(n / 4.294967296E9));
+            return new CustomInt64((uint) n, (uint) Math.Floor(n / 4.294967296E9));
         }
 
         public long ToNumber()
         {
-            return (long)(High * 4.294967296E9 + Low);
+            return (long) (High * 4.294967296E9 + Low);
         }
     }
 }

@@ -10,10 +10,13 @@ namespace Cookie.SerDes.Des.Parts
 {
     internal class Primitive : IDeserializerPart
     {
-        public bool Predicat(PropertyInfo property) => PrimitiveTypes.Primitives.Contains(property.PropertyType)
-                                                       && property.GetCustomAttribute<CustomVarAttribute>() == null;
+        public bool Predicat(PropertyInfo property)
+        {
+            return PrimitiveTypes.Primitives.Contains(property.PropertyType)
+                   && property.GetCustomAttribute<CustomVarAttribute>() == null;
+        }
 
-        public void OnMatch(List<ParameterExpression> variableExpressions, List<Expression> contentExpressions, 
+        public void OnMatch(List<ParameterExpression> variableExpressions, List<Expression> contentExpressions,
             PropertyInfo propertyInfo, ParameterExpression paramClass, ParameterExpression paramReader)
         {
             var mi = typeof(IReader).GetMethod("ReadValue").MakeGenericMethod(propertyInfo.PropertyType);

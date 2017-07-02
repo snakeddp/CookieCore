@@ -17,7 +17,7 @@ namespace Cookie.ProtocolBuilder.Parts.Usings
             if (pr.Fields == null || !pr.Fields.Any()) return false;
             if (pr.Fields.Any(p => p.WriteMethod.StartsWith("writeVar")))
                 return true;
-            if (pr.Fields.Any(p => p.WriteLengthMethod.StartsWith("writeVar")) 
+            if (pr.Fields.Any(p => p.WriteLengthMethod.StartsWith("writeVar"))
                 && pr.Fields.Any(p => p.IsDynamicLength))
                 return true;
 

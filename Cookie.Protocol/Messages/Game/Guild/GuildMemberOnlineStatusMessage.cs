@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Guild
@@ -9,6 +8,7 @@ namespace Cookie.Protocol.Messages.Game.Guild
     {
         [CustomVar]
         public long MemberId { get; set; }
+
         [RegularBool]
         public bool Online { get; set; }
     }

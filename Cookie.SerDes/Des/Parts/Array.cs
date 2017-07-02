@@ -11,9 +11,12 @@ namespace Cookie.SerDes.Des.Parts
 {
     internal class Array : IDeserializerPart
     {
-        public bool Predicat(PropertyInfo property) => property.PropertyType.IsArray;
+        public bool Predicat(PropertyInfo property)
+        {
+            return property.PropertyType.IsArray;
+        }
 
-        public void OnMatch(List<ParameterExpression> variableExpressions, List<Expression> contentExpressions, 
+        public void OnMatch(List<ParameterExpression> variableExpressions, List<Expression> contentExpressions,
             PropertyInfo propertyInfo, ParameterExpression paramClass, ParameterExpression paramReader)
         {
             var propType = propertyInfo.PropertyType;
@@ -26,9 +29,9 @@ namespace Cookie.SerDes.Des.Parts
             var isContentCustom = customVarAttr != null;
             var isContentPrimitive = PrimitiveTypes.Primitives.Contains(elemType);
 
-            var miLen = isTypeLenCustom ? 
-                typeof(IReader).GetMethod("ReadCustom").MakeGenericMethod(typeLen) 
-              : typeof(IReader).GetMethod("ReadValue").MakeGenericMethod(typeLen);
+            var miLen = isTypeLenCustom
+                ? typeof(IReader).GetMethod("ReadCustom").MakeGenericMethod(typeLen)
+                : typeof(IReader).GetMethod("ReadValue").MakeGenericMethod(typeLen);
 
             var paramProp = Expression.Property(paramClass, propertyInfo);
             var paramLen = Expression.Variable(typeLen, "len");
@@ -48,7 +51,7 @@ namespace Cookie.SerDes.Des.Parts
                     .GetProperty("DeserializeFunc");
 
                 var content = Expression.Assign(
-                    Expression.ArrayAccess(paramProp, i), 
+                    Expression.ArrayAccess(paramProp, i),
                     Expression.Invoke(Expression.Property(null, dlg), paramReader));
 
                 finalExpression = ExpressionHelpers.For(i,
@@ -65,7 +68,7 @@ namespace Cookie.SerDes.Des.Parts
                     {
                         var mi = typeof(IReader).GetMethod("ReadArray").MakeGenericMethod(elemType);
 
-                        finalExpression = Expression.Assign(paramProp, 
+                        finalExpression = Expression.Assign(paramProp,
                             Expression.Call(paramReader, mi, Expression.Convert(paramLen, typeof(int))));
                     }
                     else

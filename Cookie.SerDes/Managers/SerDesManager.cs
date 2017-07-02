@@ -22,15 +22,15 @@ namespace Cookie.SerDes.Managers
             var types =
                 Assembly.Load(new AssemblyName("Cookie.Protocol"))
                     .GetTypes()
-                    .Where(m => m.GetTypeInfo().HasCustomAttribute<NetworkMessageAttribute>() 
-                             || m.GetTypeInfo().HasCustomAttribute<NetworkTypeAttribute>());
+                    .Where(m => m.GetTypeInfo().HasCustomAttribute<NetworkMessageAttribute>()
+                                || m.GetTypeInfo().HasCustomAttribute<NetworkTypeAttribute>());
 
             var serExpressions = types.Select(t =>
             {
                 var genSerializerMi = typeof(Serializer<>).MakeGenericType(t)
                     .GetMethod("GenerateExpression", BindingFlags.NonPublic | BindingFlags.Static);
 
-                return  Expression.Call(genSerializerMi);
+                return Expression.Call(genSerializerMi);
             });
 
             var desExpressions = types.Select(t =>
@@ -51,7 +51,9 @@ namespace Cookie.SerDes.Managers
         }
 
         public static void Serialize<T>(T message, IWriter writer)
-            => Serializer<T>.SerializeAction(message, writer);
+        {
+            Serializer<T>.SerializeAction(message, writer);
+        }
 
         public static byte[] Serialize<T>(T message)
         {
@@ -59,7 +61,7 @@ namespace Cookie.SerDes.Managers
             var fbw = new FastBinaryWriter(sizeOfMessage);
 
             fbw.CreateContext(
-                ctx => Serialize<T>(message, ctx));
+                ctx => Serialize(message, ctx));
 
             return fbw.Buffer;
         }
@@ -73,18 +75,20 @@ namespace Cookie.SerDes.Managers
                 ctx =>
                 {
                     foreach (var message in messages)
-                    {
                         Serialize(message, ctx);
-                    }
                 });
 
             return fbw.Buffer;
         }
 
         public static T Deserialize<T>(IReader reader)
-            => Deserializer<T>.DeserializeFunc(reader);
+        {
+            return Deserializer<T>.DeserializeFunc(reader);
+        }
 
-        public static void GenerateExpressions() => ExpressionGenerator();
-
+        public static void GenerateExpressions()
+        {
+            ExpressionGenerator();
+        }
     }
 }

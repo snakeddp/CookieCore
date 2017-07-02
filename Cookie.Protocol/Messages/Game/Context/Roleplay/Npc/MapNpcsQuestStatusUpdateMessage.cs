@@ -1,7 +1,5 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
-using Cookie.Protocol.Types.Game.Context.Roleplay.Quest;
 
 namespace Cookie.Protocol.Messages.Game.Context.Roleplay.Npc
 {
@@ -9,9 +7,11 @@ namespace Cookie.Protocol.Messages.Game.Context.Roleplay.Npc
     public class MapNpcsQuestStatusUpdateMessage
     {
         public int MapId { get; set; }
+
         [CustomVar]
         [LengthType(typeof(short))]
         public int[] NpcsIdsWithQuest { get; set; }
+
         [CustomVar]
         [LengthType(typeof(short))]
         public int[] NpcsIdsWithoutQuest { get; set; }

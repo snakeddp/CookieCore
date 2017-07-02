@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Pvp
@@ -10,6 +9,7 @@ namespace Cookie.Protocol.Messages.Game.Pvp
         [CustomVar]
         [LengthType(typeof(short))]
         public long[] PlayerIds { get; set; }
+
         [LengthType(typeof(short), true)]
         public sbyte[] Enable { get; set; }
     }

@@ -1,8 +1,5 @@
-﻿
-using Cookie.Core.Attributes.Class;
-using Cookie.Protocol.Types.Game.Data.Items;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Protocol.Types.Game.Character.Characteristic;
-using Cookie.Protocol.Types.Game.Shortcut;
 
 namespace Cookie.Protocol.Messages.Game.Context.Fight
 {

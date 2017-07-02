@@ -9,7 +9,7 @@ namespace Cookie.ProtocolBuilder.Json.Serializables.Protocol
         public int Length { get; set; }
         public int BBWPosition { get; set; }
 
-        public string Name { get;  set; }
+        public string Name { get; set; }
         public string Type { get; set; }
         public string WriteMethod { get; set; }
         public string WriteLengthMethod { get; set; }

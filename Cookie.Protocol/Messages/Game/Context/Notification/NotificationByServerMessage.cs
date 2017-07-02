@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Context.Notification
@@ -9,8 +8,10 @@ namespace Cookie.Protocol.Messages.Game.Context.Notification
     {
         [CustomVar]
         public ushort Id { get; set; }
+
         [LengthType(typeof(short), true)]
         public string[] Parameters { get; set; }
+
         [RegularBool]
         public bool ForceOpen { get; set; }
     }

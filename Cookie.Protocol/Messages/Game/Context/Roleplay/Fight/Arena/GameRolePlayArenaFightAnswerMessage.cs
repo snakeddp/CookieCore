@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Context.Roleplay.Fight.Arena
@@ -8,6 +7,7 @@ namespace Cookie.Protocol.Messages.Game.Context.Roleplay.Fight.Arena
     public class GameRolePlayArenaFightAnswerMessage
     {
         public int FightId { get; set; }
+
         [RegularBool]
         public bool Accept { get; set; }
     }

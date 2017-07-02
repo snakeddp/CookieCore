@@ -11,11 +11,8 @@ namespace Cookie.DataCenter.D2I
     //TODO: FIX
     public class D2IUnpacker
     {
-        private readonly IReader _reader;
         private readonly Dictionary<int, int> _indexes;
-
-        public string FileName { get; }
-        public string FilePath { get; }
+        private readonly IReader _reader;
 
         public D2IUnpacker(string filePath)
         {
@@ -55,7 +52,9 @@ namespace Cookie.DataCenter.D2I
                     unDiacriticalIndex.Add(key, _reader.ReadValue<int>());
                 }
                 else
+                {
                     unDiacriticalIndex.Add(key, pointeur);
+                }
             }
 
             var textIndexesCount = _reader.ReadValue<int>();
@@ -78,6 +77,9 @@ namespace Cookie.DataCenter.D2I
                 textIndexesCount -= _reader.Position - position;
             }
         }
+
+        public string FileName { get; }
+        public string FilePath { get; }
 
         public string GetTextById(int id)
         {

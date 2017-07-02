@@ -1,15 +1,14 @@
-﻿using Cookie.Core.Attributes.Class;
-using Cookie.Core.Enums;
-using Cookie.Core.Extensions;
-using Cookie.IO.Interfaces;
-using Cookie.Network.Sockets;
-using Cookie.SerDes.Managers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using Cookie.Core.Attributes.Class;
+using Cookie.Core.Extensions;
+using Cookie.IO.Interfaces;
+using Cookie.Network.Sockets;
+using Cookie.SerDes.Managers;
 
 // ReSharper disable InconsistentNaming
 
@@ -34,8 +33,8 @@ namespace Cookie.Network.Managers
 
             Processors = new Dictionary<int, Action<TC, IReader>>(
                 messages.Count(m =>
-                    //m.GetTypeInfo().GetCustomAttribute<NetworkMessageAttribute>() != null));
-                    m.GetTypeInfo().GetCustomAttribute<NetworkMessageAttribute>().Origin != Origin.Client));
+                    m.GetTypeInfo().GetCustomAttribute<NetworkMessageAttribute>() != null));
+            //m.GetTypeInfo().GetCustomAttribute<NetworkMessageAttribute>().Origin != Origin.Client));
 
 
             for (var i = 0; i < messages.Count; i++)
@@ -43,14 +42,14 @@ namespace Cookie.Network.Managers
                 var message = messages[i];
                 var messageAttr = messagesAttr[i];
 
-                if (messageAttr.Origin == Origin.Client)
-                    continue;
+                //if (messageAttr.Origin == Origin.Client)
+                //    continue;
 
                 var handler =
                 (from t in Assembly.GetEntryAssembly().GetTypes()
                     from m in t.GetTypeInfo().GetMethods()
                     where m.GetCustomAttribute<NetworkMessageHandlerAttribute>() != null
-                       && m.GetCustomAttribute<NetworkMessageHandlerAttribute>().NetworkMessageType == message
+                          && m.GetCustomAttribute<NetworkMessageHandlerAttribute>().NetworkMessageType == message
                     select m).FirstOrDefault();
 
                 if (handler == null) continue; // NOTE SURE !
@@ -68,7 +67,7 @@ namespace Cookie.Network.Managers
 
                 var messageAssign = Expression.Assign(paramMessage, deserializeCall);
 
-                var block = Expression.Block(new[] { paramMessage }, messageAssign, handlerCall);
+                var block = Expression.Block(new[] {paramMessage}, messageAssign, handlerCall);
 
                 var lambda = Expression.Lambda<Action<TC, IReader>>(block, paramTC, paramReader);
 

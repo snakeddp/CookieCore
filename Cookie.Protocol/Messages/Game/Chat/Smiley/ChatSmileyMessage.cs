@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Chat.Smiley
@@ -8,8 +7,10 @@ namespace Cookie.Protocol.Messages.Game.Chat.Smiley
     public class ChatSmileyMessage
     {
         public double EntityId { get; set; }
+
         [CustomVar]
         public ushort SmileyId { get; set; }
+
         public uint AccountId { get; set; }
     }
 }

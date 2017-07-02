@@ -5,7 +5,7 @@ namespace Cookie.ProtocolBuilder.Helpers
     public static class Throw
     {
         /// <summary>
-        /// Throws an <see cref="ArgumentNullException"/> if the given value is null
+        ///     Throws an <see cref="ArgumentNullException" /> if the given value is null
         /// </summary>
         public static void IfNull<T>(T value, string parameterName)
         {
@@ -13,7 +13,7 @@ namespace Cookie.ProtocolBuilder.Helpers
         }
 
         /// <summary>
-        /// Throws an <see cref="ArgumentException"/> if the given condition is true
+        ///     Throws an <see cref="ArgumentException" /> if the given condition is true
         /// </summary>
         public static void If(bool condition, string parameterName)
         {
@@ -21,7 +21,7 @@ namespace Cookie.ProtocolBuilder.Helpers
         }
 
         /// <summary>
-        /// Throws an <see cref="ArgumentOutOfRangeException"/> if the given value is outside of the specified range
+        ///     Throws an <see cref="ArgumentOutOfRangeException" /> if the given value is outside of the specified range
         /// </summary>
         public static void IfOutOfRange<T>(T value, string paramName, T? min = null, T? max = null)
             where T : struct, IComparable<T>
@@ -39,7 +39,7 @@ namespace Cookie.ProtocolBuilder.Helpers
         where TException : Exception
     {
         /// <summary>
-        /// Throws an exception of type <see cref="TException"/> if the condition is true
+        ///     Throws an exception of type <see cref="TException" /> if the condition is true
         /// </summary>
         public static void If(bool condition, string message)
         {
@@ -48,8 +48,9 @@ namespace Cookie.ProtocolBuilder.Helpers
         }
 
         /// <summary>
-        /// As <see cref="Throw.If(bool, string)"/>, but allows the message to be specified lazily. The message function will only be evaluated
-        /// if the condition is true
+        ///     As <see cref="Throw.If(bool, string)" />, but allows the message to be specified lazily. The message function will
+        ///     only be evaluated
+        ///     if the condition is true
         /// </summary>
         public static void If(bool condition, Func<string> message)
         {
@@ -59,7 +60,7 @@ namespace Cookie.ProtocolBuilder.Helpers
 
         private static TException Create(string message)
         {
-            return (TException)Activator.CreateInstance(typeof(TException), message);
+            return (TException) Activator.CreateInstance(typeof(TException), message);
         }
     }
 }

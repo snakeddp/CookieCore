@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Actions.Fight
@@ -9,6 +8,7 @@ namespace Cookie.Protocol.Messages.Game.Actions.Fight
     {
         [CustomVar]
         public ushort SpellId { get; set; }
+
         public double TargetId { get; set; }
     }
 }

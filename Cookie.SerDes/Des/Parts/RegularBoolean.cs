@@ -9,8 +9,11 @@ namespace Cookie.SerDes.Des.Parts
 {
     internal class RegularBoolean : IDeserializerPart
     {
-        public bool Predicat(PropertyInfo property) => property.PropertyType == typeof(bool)
-                                       && property.GetCustomAttribute<RegularBoolAttribute>() != null;
+        public bool Predicat(PropertyInfo property)
+        {
+            return property.PropertyType == typeof(bool)
+                   && property.GetCustomAttribute<RegularBoolAttribute>() != null;
+        }
 
         public void OnMatch(List<ParameterExpression> variableExpressions, List<Expression> contentExpressions,
             PropertyInfo propertyInfo, ParameterExpression paramClass, ParameterExpression paramReader)

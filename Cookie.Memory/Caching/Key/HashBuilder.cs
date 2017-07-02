@@ -25,7 +25,8 @@ namespace Cookie.Memory.Caching.Key
 
                 // compound XOR expression
                 var getHashFuncExprs = properties.Select(mi => MakeHashFuncExpression(mi, paramObj));
-                var xorChainExpr = getHashFuncExprs.Aggregate((Expression)Expression.Constant(29), LinkHashFuncExpression);
+                var xorChainExpr =
+                    getHashFuncExprs.Aggregate((Expression) Expression.Constant(29), LinkHashFuncExpression);
 
                 var lambda = Expression.Lambda<Func<T, int>>(xorChainExpr, paramObj);
 
@@ -65,7 +66,9 @@ namespace Cookie.Memory.Caching.Key
             }
 
             private static bool IsEnumerableType(Type type)
-                => typeof(IEnumerable).IsAssignableFrom(type) && type != typeof(string);
+            {
+                return typeof(IEnumerable).IsAssignableFrom(type) && type != typeof(string);
+            }
         }
     }
 }

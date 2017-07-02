@@ -15,18 +15,18 @@ namespace Cookie.IO.Types
 
         public uint High
         {
-            get { return InternalHigh; }
-            set { InternalHigh = value; }
+            get => InternalHigh;
+            set => InternalHigh = value;
         }
 
         public static CustomUInt64 FromNumber(ulong n)
         {
-            return new CustomUInt64((uint)n, (uint)Math.Floor(n / 4.294967296E9));
+            return new CustomUInt64((uint) n, (uint) Math.Floor(n / 4.294967296E9));
         }
 
         public ulong ToNumber()
         {
-            return (ulong)(High * 4.294967296E9 + Low);
+            return (ulong) (High * 4.294967296E9 + Low);
         }
     }
 }

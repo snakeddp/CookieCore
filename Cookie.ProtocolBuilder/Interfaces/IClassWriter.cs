@@ -1,5 +1,4 @@
-﻿using System.IO;
-using Cookie.ProtocolBuilder.Json.Serializables.Protocol;
+﻿using Cookie.ProtocolBuilder.Json.Serializables.Protocol;
 
 namespace Cookie.ProtocolBuilder.Interfaces
 {

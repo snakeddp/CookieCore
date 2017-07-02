@@ -16,7 +16,8 @@ namespace Cookie.SerDes.Ser
     {
         private static readonly Type TypeOfT = typeof(T);
 
-        public static Expression<Action<T, IWriter>> MakeMessageSerializerExpression(ParameterExpression paramT, ParameterExpression paramWriter)
+        public static Expression<Action<T, IWriter>> MakeMessageSerializerExpression(ParameterExpression paramT,
+            ParameterExpression paramWriter)
         {
             var properties = GetProperties();
             var contentExpressions = new List<Expression>();
@@ -62,20 +63,18 @@ namespace Cookie.SerDes.Ser
             contentSerExp.Add(callWriteLen);
 
             foreach (var property in properties)
+            foreach (var part in SerializerPartsManager.Parts)
             {
-                foreach (var part in SerializerPartsManager.Parts)
-                {
-                    if (!part.Predicat(property)) continue;
-                    part.OnMatch(contentSerExp, property, paramT, paramWriter);
-                    break;
-                }
+                if (!part.Predicat(property)) continue;
+                part.OnMatch(contentSerExp, property, paramT, paramWriter);
+                break;
             }
 
             // null operator to add Expression.Empty() on empty ?
             var blockSer = Expression.Block(contentSerExp);
 
             var ifExp = Expression.IfThen(
-                Expression.GreaterThan(sizeOfLenVar, Expression.Constant(0)), 
+                Expression.GreaterThan(sizeOfLenVar, Expression.Constant(0)),
                 blockSer);
 
             contentExpressions.Add(ifExp);
@@ -87,19 +86,18 @@ namespace Cookie.SerDes.Ser
             return lambda;
         }
 
-        public static Expression<Action<T, IWriter>> MakeTypeSerializerExpression(ParameterExpression paramT, ParameterExpression paramWriter)
+        public static Expression<Action<T, IWriter>> MakeTypeSerializerExpression(ParameterExpression paramT,
+            ParameterExpression paramWriter)
         {
             var properties = GetProperties();
 
             var contentExpressions = new List<Expression>();
             foreach (var property in properties)
+            foreach (var part in SerializerPartsManager.Parts)
             {
-                foreach (var part in SerializerPartsManager.Parts)
-                {
-                    if (!part.Predicat(property)) continue;
-                    part.OnMatch(contentExpressions, property, paramT, paramWriter);
-                    break;
-                }
+                if (!part.Predicat(property)) continue;
+                part.OnMatch(contentExpressions, property, paramT, paramWriter);
+                break;
             }
 
             var block = Expression.Block(contentExpressions);
@@ -132,12 +130,10 @@ namespace Cookie.SerDes.Ser
             var properties = new List<PropertyInfo>();
 
             foreach (var type in types)
-            {
                 properties.AddRange(
                     type.GetProperties().Where(p => p.CanRead
                                                     && p.CanWrite
                                                     && p.DeclaringType.FullName.Equals(type.FullName)));
-            }
 
             return properties.ToImmutableArray();
         }

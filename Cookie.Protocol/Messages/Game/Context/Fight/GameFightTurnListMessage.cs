@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Context.Fight
@@ -9,6 +8,7 @@ namespace Cookie.Protocol.Messages.Game.Context.Fight
     {
         [LengthType(typeof(short), true)]
         public double[] Ids { get; set; }
+
         [LengthType(typeof(short), true)]
         public double[] DeadsIds { get; set; }
     }

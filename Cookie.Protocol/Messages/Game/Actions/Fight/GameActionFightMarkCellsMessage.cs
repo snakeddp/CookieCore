@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Protocol.Types.Game.Actions.Fight;
 
 namespace Cookie.Protocol.Messages.Game.Actions.Fight

@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Inventory.Items
@@ -9,7 +8,9 @@ namespace Cookie.Protocol.Messages.Game.Inventory.Items
     {
         [CustomVar]
         public uint FoodUID { get; set; }
+
         public sbyte FoodPos { get; set; }
+
         [RegularBool]
         public bool Preview { get; set; }
     }

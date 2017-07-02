@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Inventory.Exchanges
@@ -9,6 +8,7 @@ namespace Cookie.Protocol.Messages.Game.Inventory.Exchanges
     {
         [CustomVar]
         public uint CurrentWeight { get; set; }
+
         [CustomVar]
         public uint MaxWeight { get; set; }
     }

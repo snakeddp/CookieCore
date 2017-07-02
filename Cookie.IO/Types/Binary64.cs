@@ -17,8 +17,8 @@
             var modHigh = InternalHigh % n;
             var mod = (Low % n + modHigh * 6) % n;
             InternalHigh = InternalHigh / n;
-            var newLow = (uint)((modHigh * 4.294967296E9 + Low) / n);
-            InternalHigh = InternalHigh + (uint)(newLow / 4.294967296E9);
+            var newLow = (uint) ((modHigh * 4.294967296E9 + Low) / n);
+            InternalHigh = InternalHigh + (uint) (newLow / 4.294967296E9);
             Low = newLow;
             return mod;
         }
@@ -27,14 +27,14 @@
         {
             var newLow = Low * n;
             InternalHigh = InternalHigh * n;
-            InternalHigh = InternalHigh + (uint)(newLow / 4.294967296E9);
+            InternalHigh = InternalHigh + (uint) (newLow / 4.294967296E9);
             Low = Low * n;
         }
 
         public void Add(uint n)
         {
             var newLow = Low + n;
-            InternalHigh = InternalHigh + (uint)(newLow / 4.294967296E9);
+            InternalHigh = InternalHigh + (uint) (newLow / 4.294967296E9);
             Low = newLow;
         }
 

@@ -9,8 +9,11 @@ namespace Cookie.SerDes.Ser.Parts
 {
     internal class WrappedBool : ISerializerPart
     {
-        public bool Predicat(PropertyInfo property) => property.PropertyType == typeof(bool)
-                                               && property.GetCustomAttribute<RegularBoolAttribute>() == null;
+        public bool Predicat(PropertyInfo property)
+        {
+            return property.PropertyType == typeof(bool)
+                   && property.GetCustomAttribute<RegularBoolAttribute>() == null;
+        }
 
         public void OnMatch(List<Expression> contentExpressions, PropertyInfo propertyInfo, ParameterExpression paramT,
             ParameterExpression paramWriter)

@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Context.Roleplay.Stats
@@ -9,7 +8,9 @@ namespace Cookie.Protocol.Messages.Game.Context.Roleplay.Stats
     {
         [RegularBool]
         public bool UseAdditionnal { get; set; }
+
         public sbyte StatId { get; set; }
+
         [CustomVar]
         public ushort BoostPoint { get; set; }
     }

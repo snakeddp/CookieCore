@@ -1,7 +1,5 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
-using Cookie.Protocol.Types.Game.Context.Fight;
 
 namespace Cookie.Protocol.Types.Game.Context.Fight
 {
@@ -10,9 +8,12 @@ namespace Cookie.Protocol.Types.Game.Context.Fight
     {
         public sbyte TeamId { get; set; }
         public sbyte Wave { get; set; }
+
         [RegularBool]
         public bool Alive { get; set; }
+
         public GameFightMinimalStats Stats { get; set; }
+
         [CustomVar]
         [LengthType(typeof(short))]
         public ushort[] PreviousPositions { get; set; }

@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Protocol.Messages.Game.Character.Replay;
 using Cookie.Protocol.Types.Game.Character.Choice;
 

@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Web.Ankabox
@@ -9,6 +8,7 @@ namespace Cookie.Protocol.Messages.Web.Ankabox
     {
         [CustomVar]
         public ushort Unread { get; set; }
+
         [CustomVar]
         public ushort Total { get; set; }
     }

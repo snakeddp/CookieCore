@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Types.Game.Character.Choice
@@ -8,8 +7,10 @@ namespace Cookie.Protocol.Types.Game.Character.Choice
     public class CharacterHardcoreOrEpicInformations : CharacterBaseInformations
     {
         public sbyte DeathState { get; set; }
+
         [CustomVar]
         public ushort DeathCount { get; set; }
+
         public sbyte DeathMaxLevel { get; set; }
     }
 }

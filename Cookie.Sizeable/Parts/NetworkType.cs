@@ -12,8 +12,11 @@ namespace Cookie.Sizeable.Parts
 {
     internal class NetworkType : ISizePart
     {
-        public bool Predicat(PropertyInfo property) => !PrimitiveTypes.Primitives.Contains(property.PropertyType)
-                                               && property.PropertyType.GetTypeInfo().HasCustomAttribute<NetworkTypeAttribute>();
+        public bool Predicat(PropertyInfo property)
+        {
+            return !PrimitiveTypes.Primitives.Contains(property.PropertyType)
+                   && property.PropertyType.GetTypeInfo().HasCustomAttribute<NetworkTypeAttribute>();
+        }
 
         public void OnMatch(List<Expression> expressions, PropertyInfo propertyInfo,
             ParameterExpression paramClass)
@@ -27,7 +30,6 @@ namespace Cookie.Sizeable.Parts
             Expression sizeValue = Expression.Call(mi, paramProp);
 
             expressions.Add(sizeValue);
-
         }
     }
 }

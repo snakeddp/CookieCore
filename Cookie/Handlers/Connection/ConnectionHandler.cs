@@ -21,16 +21,17 @@ namespace Cookie.Handlers.Connection
         {
             client.Write("Connecté au serveur d'authentification.");
             var credentials = Rsa.Encrypt(message.Key, client.Account.Login, client.Account.Password, message.Salt);
+
             var version = new VersionExtended
             {
                 Major = 2,
-                Minor = 41,
-                Release = 1,
-                Revision = 120980,
-                Patch = 0,
-                BuildType = (sbyte)BuildTypeEnum.Release,
-                Install = 1,
-                Technology = 1
+                Minor = 42,
+                Release = 0,
+                Revision = 121463,
+                Patch = 6,
+                BuildType = (sbyte) BuildTypeEnum.Release,
+                Install = (sbyte) ClientInstallTypeEnum.ClientBundle,
+                Technology = (sbyte) ClientTechnologyEnum.ClientAir
             };
             var identificationMessage = new IdentificationMessage
             {

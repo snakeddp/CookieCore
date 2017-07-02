@@ -1,5 +1,4 @@
-﻿
-using Cookie.Core.Attributes.Class;
+﻿using Cookie.Core.Attributes.Class;
 using Cookie.Core.Attributes.Property;
 
 namespace Cookie.Protocol.Messages.Game.Basic
@@ -9,6 +8,7 @@ namespace Cookie.Protocol.Messages.Game.Basic
     {
         [CustomVar]
         public uint Seq { get; set; }
+
         [CustomVar]
         public ushort LastPacketId { get; set; }
     }

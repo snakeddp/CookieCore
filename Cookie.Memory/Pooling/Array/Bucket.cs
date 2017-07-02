@@ -9,9 +9,6 @@ namespace Cookie.Memory.Pooling.Array
     {
         internal class Bucket
         {
-            public SemaphoreSlim Semaphore { get; }
-            public ConcurrentQueue<ArraySegment<T>> Queue { get; }
-
             internal Bucket(int size, int numberOfBuckets, T[] buffer, ref int offset)
             {
                 Queue = new ConcurrentQueue<ArraySegment<T>>();
@@ -24,6 +21,9 @@ namespace Cookie.Memory.Pooling.Array
 
                 Semaphore = new SemaphoreSlim(numberOfBuckets);
             }
+
+            public SemaphoreSlim Semaphore { get; }
+            public ConcurrentQueue<ArraySegment<T>> Queue { get; }
         }
     }
 }
