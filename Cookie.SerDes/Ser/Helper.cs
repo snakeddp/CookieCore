@@ -4,6 +4,10 @@ namespace Cookie.SerDes.Ser
 {
     internal static class Helper
     {
+        private static uint _instanceId;
+
+        public static void WriteInstanceId(IWriter writer) => writer.WriteValue(_instanceId++);
+
         public static void WriteLen(IWriter writer, int typeLen, int length)
         {
             switch (typeLen)

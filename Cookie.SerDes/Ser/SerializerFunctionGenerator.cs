@@ -54,6 +54,10 @@ namespace Cookie.SerDes.Ser
 
             var contentSerExp = new List<Expression>();
 
+            var writeInstanceMi = typeof(Helper).GetMethod("WriteInstanceId");
+            var callWriteInstance = Expression.Call(writeInstanceMi, paramWriter);
+            contentExpressions.Add(callWriteInstance);
+
             var writeLenMi = typeof(Helper).GetMethod("WriteLen");
             var callWriteLen = Expression.Call(
                 writeLenMi,
