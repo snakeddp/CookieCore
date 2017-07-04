@@ -18,3 +18,5 @@ Vous devez tout d'abord clone le projet, puis faire un <b>dotnet restore</b> pou
 Pour publier pour une plateforme spécifique le projet vous pouvez vous renseignez sur : https://docs.microsoft.com/fr-fr/dotnet/core/deploying/
 
 Toutes contributions au projet à l'aide des outils GitHub (Pull Request, etc) ou sur le Discord sera apprécié.
+
+Un grand merci à <b>The Nameless</b> qui, sans lui, ce projet n'aurais pas existé. (https://github.com/thenameless314159)
